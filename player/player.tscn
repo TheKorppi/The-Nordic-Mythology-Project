@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bx0bwt8foqg10"]
+
+[ext_resource type="Script" uid="uid://co0gykgrgprev" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="PackedScene" uid="uid://cd4efrjy6aede" path="res://player/weapons/axe/axe.tscn" id="2_rkbax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+radius = 0.5800781
+height = 2.5627136
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
+albedo_color = Color(0.19517082, 0.59399885, 0.556206, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkbax"]
+material = SubResource("StandardMaterial3D_oul6g")
+radius = 0.45
+height = 1.77
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1dw6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yw30f"]
+material = SubResource("StandardMaterial3D_g1dw6")
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oul6g"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.06
+
+[node name="Player" type="CharacterBody3D" unique_id=172001739 groups=["Player"]]
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=414372498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013925254, 1.2935973, 0.026751697)
+shape = SubResource("CapsuleShape3D_kqu6x")
+debug_color = Color(0.8987152, 0.97873, 0.99999994, 0.41960785)
+debug_fill = false
+
+[node name="Player_model" type="MeshInstance3D" parent="." unique_id=617668638]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8657777, 0)
+mesh = SubResource("CapsuleMesh_rkbax")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1813834193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1470094, -0.6364075)
+mesh = SubResource("BoxMesh_yw30f")
+
+[node name="The_Hand" type="MeshInstance3D" parent="." unique_id=205017099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1.4, 0)
+mesh = SubResource("CylinderMesh_oul6g")
+
+[node name="the_hand" type="Marker3D" parent="The_Hand" unique_id=1438475158]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011569381, 0)
+
+[node name="StunTimer" type="Timer" parent="." unique_id=822262401]
+unique_name_in_owner = true
+wait_time = 0.2
+
+[node name="Axe" parent="." unique_id=16307633 instance=ExtResource("2_rkbax")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.8, 0.4, 0)
