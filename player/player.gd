@@ -74,7 +74,7 @@ func player_hit(damage):
 		health = 0
 
 func throw_bomb():
-	const FIRE_BOMB = preload("res://player/fire_bomb.tscn")
+	const FIRE_BOMB = preload("res://player/weapons/bomb/fire_bomb.tscn")
 	var new_bomb = FIRE_BOMB.instantiate()
 	%the_hand.add_child(new_bomb) 
 	
