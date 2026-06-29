@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://7jysje5bmeo8"]
+
+[ext_resource type="Script" uid="uid://d2lykue1eh1gf" path="res://player/weapons/bomb/fire_bomb.gd" id="1_hvo7k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_03uv5"]
+radius = 0.34526658
+
+[sub_resource type="SphereMesh" id="SphereMesh_hvo7k"]
+radius = 0.32
+height = 0.64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_co7ya"]
+albedo_color = Color(0.036556315, 0.03655632, 0.03655632, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hvo7k"]
+radius = 5.0759916
+
+[node name="Fire_Bomb" type="RigidBody3D" unique_id=705222887]
+top_level = true
+disable_mode = 2
+script = ExtResource("1_hvo7k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=704093446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3247112, 0)
+shape = SubResource("SphereShape3D_03uv5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2144593899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3224362, -0.0060736537)
+mesh = SubResource("SphereMesh_hvo7k")
+surface_material_override/0 = SubResource("StandardMaterial3D_co7ya")
+
+[node name="Fuse" type="Timer" parent="." unique_id=213850255]
+unique_name_in_owner = true
+wait_time = 2.5
+autostart = true
+
+[node name="Explosion" type="Area3D" parent="." unique_id=231117323]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Explosion" unique_id=1255568705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29335505, 0)
+shape = SubResource("SphereShape3D_hvo7k")
+
+[connection signal="timeout" from="Fuse" to="." method="_on_fuse_timeout"]

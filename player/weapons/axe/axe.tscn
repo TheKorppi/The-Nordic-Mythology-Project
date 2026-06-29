@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cd4efrjy6aede"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0htw"]
+albedo_color = Color(0.6292236, 0.41780937, 0.25354335, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2n50j"]
+material = SubResource("StandardMaterial3D_m0htw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vujy"]
+albedo_color = Color(0.4849202, 0.4849202, 0.4849202, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_aa332"]
+material = SubResource("StandardMaterial3D_5vujy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0htw"]
+size = Vector3(0.19920349, 0.3688736, 0.19213867)
+
+[node name="Axe" type="Area3D" unique_id=16307633]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1907971039]
+transform = Transform3D(0.06233067, 0, 0, 0, 0.701476, 0, 0, 0, 0.0625504, 0, 1.3183959, 0)
+mesh = SubResource("CylinderMesh_2n50j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1731063638]
+transform = Transform3D(0.0030726597, 0.2776393, 7.861149e-06, -0.0024846832, 0.00024103705, 0.2454139, 0.09205821, -0.009260361, 0.0066235415, 0.14698529, 1.8893082, -0.009844258)
+mesh = SubResource("PrismMesh_aa332")
+
+[node name="Edge" type="CollisionShape3D" parent="." unique_id=1727354015]
+transform = Transform3D(2.0497696, 0, 0, 0, 1, 0, 0, 0, 1, 0.17778197, 1.8889369, -0.01677838)
+shape = SubResource("BoxShape3D_m0htw")
