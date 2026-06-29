@@ -1,0 +1,391 @@
+[gd_scene format=3 uid="uid://cvgqkiq0w17yx"]
+
+[ext_resource type="Script" uid="uid://c37m4co2y2nu2" path="res://UI/MainMenu.cs" id="1_p8ccj"]
+[ext_resource type="FontFile" uid="uid://c5icay8roa66y" path="res://UI/Deutsch.ttf" id="1_tk8dj"]
+
+[sub_resource type="Theme" id="Theme_d8nwk"]
+default_font = ExtResource("1_tk8dj")
+default_font_size = 33
+
+[sub_resource type="Theme" id="Theme_4cwpn"]
+default_font = ExtResource("1_tk8dj")
+default_font_size = 33
+
+[node name="MainMenu" type="Control" unique_id=122549395]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_d8nwk")
+script = ExtResource("1_p8ccj")
+
+[node name="MainPanel" type="Control" parent="." unique_id=1055230205]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4cwpn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel" unique_id=623991717]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -74.0
+offset_right = 149.5
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 13
+
+[node name="PlayBtn" type="Button" parent="MainPanel/VBoxContainer" unique_id=203816453]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="CharacterBtn" type="Button" parent="MainPanel/VBoxContainer" unique_id=487016310]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Character"
+
+[node name="FriendlistBtn" type="Button" parent="MainPanel/VBoxContainer" unique_id=1894910362]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Friendlist"
+
+[node name="SettingsBtn" type="Button" parent="MainPanel/VBoxContainer" unique_id=1579007410]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="ExitBtn" type="Button" parent="MainPanel/VBoxContainer" unique_id=1972458349]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="Label" type="Label" parent="MainPanel" unique_id=1497910617]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 42.0
+offset_right = 192.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 149
+text = "Hildr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayPanel" type="Control" parent="." unique_id=1576700753]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" type="Button" parent="PlayPanel" unique_id=684081354]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 80.0
+offset_right = 144.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[node name="MultiplayerBtn" type="Button" parent="PlayPanel" unique_id=37640671]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -483.0
+offset_top = -41.0
+offset_right = -200.0
+offset_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Multiplayer"
+
+[node name="SingleplayerBtn" type="Button" parent="PlayPanel" unique_id=744122627]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 219.0
+offset_top = -41.0
+offset_right = 502.0
+offset_bottom = 41.0
+grow_vertical = 2
+text = "Singleplayer"
+
+[node name="CharacterPanel" type="Control" parent="." unique_id=2125606116]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" type="Button" parent="CharacterPanel" unique_id=53257522]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.5
+offset_top = -130.0
+offset_right = 141.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="StoreBtn" type="Button" parent="CharacterPanel" unique_id=1825891427]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 100.0
+offset_right = 142.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Store"
+
+[node name="EditorBtn" type="Button" parent="CharacterPanel" unique_id=212772790]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -319.0
+offset_right = 143.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Editor"
+
+[node name="FriendlistPanel" type="Control" parent="." unique_id=1544607660]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" type="Button" parent="FriendlistPanel" unique_id=1971845791]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.5
+offset_top = -120.0
+offset_right = 141.5
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="SettingsPanel" type="Control" parent="." unique_id=391717372]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=654962112]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.25
+offset_top = -189.75
+offset_right = 139.25
+offset_bottom = 189.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SoundLabel" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=1305766062]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sound"
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPanel/VBoxContainer" unique_id=636751323]
+layout_mode = 2
+min_value = 0.001
+max_value = 1.0
+step = 0.05
+value = 0.501
+
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=502000102]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Fullscreen"
+
+[node name="FullscreenToggle" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=2109741450]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackBtn" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=132685630]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 3.83
+text = "Back"
+
+[node name="MultiplayerPanel" type="Control" parent="." unique_id=1253609885]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" type="Button" parent="MultiplayerPanel" unique_id=1040934576]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -195.0
+offset_right = 142.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="HostBtn" type="Button" parent="MultiplayerPanel" unique_id=1991477936]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -359.0
+offset_right = 315.0
+offset_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Host game"
+
+[node name="JoinBtn" type="Button" parent="MultiplayerPanel" unique_id=121501615]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -313.0
+offset_top = -363.0
+offset_right = -30.0
+offset_bottom = -281.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Join "
+
+[node name="JoinPanel" type="Control" parent="." unique_id=1261481480]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IpInput" type="LineEdit" parent="JoinPanel" unique_id=1950450532]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 216.0
+offset_right = 711.0
+offset_bottom = 275.0
+text = "127.0.0.1"
+placeholder_text = "Put IP"
+alignment = 1
+
+[node name="ConnectBtn" type="Button" parent="JoinPanel" unique_id=1519606942]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -359.0
+offset_right = 136.0
+offset_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Connect"
+
+[node name="BackBtn" type="Button" parent="JoinPanel" unique_id=903991908]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -195.0
+offset_right = 142.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="MainPanel/VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/CharacterBtn" to="." method="_on_character_btn_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/FriendlistBtn" to="." method="_on_friendlist_btn_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="PlayPanel/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="PlayPanel/MultiplayerBtn" to="." method="_on_multiplayer_btn_pressed"]
+[connection signal="pressed" from="CharacterPanel/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="FriendlistPanel/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="value_changed" from="SettingsPanel/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="SettingsPanel/VBoxContainer/FullscreenToggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/HostBtn" to="." method="_on_host_btn_pressed"]
+[connection signal="pressed" from="MultiplayerPanel/JoinBtn" to="." method="_on_join_btn_pressed"]
+[connection signal="pressed" from="JoinPanel/ConnectBtn" to="." method="_on_connect_btn_pressed"]
+[connection signal="pressed" from="JoinPanel/BackBtn" to="." method="_on_back_btn_pressed"]
