@@ -90,7 +90,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayPanel" type="Control" parent="." unique_id=1576700753]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,11 +332,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IpInput" type="LineEdit" parent="JoinPanel" unique_id=1950450532]
-layout_mode = 0
-offset_left = 425.0
-offset_top = 216.0
-offset_right = 711.0
-offset_bottom = 275.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = 38.0
+offset_right = 135.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "127.0.0.1"
 placeholder_text = "Put IP"
 alignment = 1
@@ -350,9 +356,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -147.0
-offset_top = -359.0
+offset_top = -412.0
 offset_right = 136.0
-offset_bottom = -277.0
+offset_bottom = -330.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Connect"
@@ -372,6 +378,41 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="LobbyPanel" type="Control" parent="." unique_id=1124749230]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LobbyPanel" unique_id=1818396700]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -442.5
+offset_right = 316.0
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerList" type="ItemList" parent="LobbyPanel/VBoxContainer" unique_id=878634443]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="StartGameBtn" type="Button" parent="LobbyPanel/VBoxContainer" unique_id=59959109]
+layout_mode = 2
+text = "Start game"
+
+[node name="BackBtn" type="Button" parent="LobbyPanel/VBoxContainer" unique_id=1277246701]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="MainPanel/VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="MainPanel/VBoxContainer/CharacterBtn" to="." method="_on_character_btn_pressed"]
 [connection signal="pressed" from="MainPanel/VBoxContainer/FriendlistBtn" to="." method="_on_friendlist_btn_pressed"]
@@ -379,6 +420,7 @@ text = "Back"
 [connection signal="pressed" from="MainPanel/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="PlayPanel/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="PlayPanel/MultiplayerBtn" to="." method="_on_multiplayer_btn_pressed"]
+[connection signal="pressed" from="PlayPanel/SingleplayerBtn" to="." method="_on_singleplayer_btn_pressed"]
 [connection signal="pressed" from="CharacterPanel/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="pressed" from="FriendlistPanel/BackBtn" to="." method="_on_back_btn_pressed"]
 [connection signal="value_changed" from="SettingsPanel/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
@@ -389,3 +431,5 @@ text = "Back"
 [connection signal="pressed" from="MultiplayerPanel/JoinBtn" to="." method="_on_join_btn_pressed"]
 [connection signal="pressed" from="JoinPanel/ConnectBtn" to="." method="_on_connect_btn_pressed"]
 [connection signal="pressed" from="JoinPanel/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="LobbyPanel/VBoxContainer/StartGameBtn" to="." method="_on_start_game_btn_pressed"]
+[connection signal="pressed" from="LobbyPanel/VBoxContainer/BackBtn" to="." method="_on_back_btn_pressed"]
