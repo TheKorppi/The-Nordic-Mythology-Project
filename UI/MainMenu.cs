@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+
 public partial class MainMenu : Control
 {
 	private Control _mainPanel;
@@ -9,7 +10,11 @@ public partial class MainMenu : Control
 	private Control _friendlistPanel;
 	private Control _settingsPanel;
 	private Control _multiplayerPanel;
-	private Control _joinPanel; // Only JoinPanel is kept
+	private Control _joinPanel;
+	private Control _lobbyPanel;
+	private ItemList _playerList;
+	private Button _startGameBtn;
+	private NetworkManager _networkManager;
 
 	private Stack<Control> _panelHistory = new Stack<Control>();
 	private Control _currentPanel;
@@ -23,6 +28,13 @@ public partial class MainMenu : Control
 		_settingsPanel = GetNode<Control>("SettingsPanel");
 		_multiplayerPanel = GetNode<Control>("MultiplayerPanel");
 		_joinPanel = GetNode<Control>("JoinPanel");
+		
+		_lobbyPanel = GetNode<Control>("LobbyPanel");
+		_playerList = GetNode<ItemList>("LobbyPanel/VBoxContainer/PlayerList");
+		_startGameBtn = GetNode<Button>("LobbyPanel/VBoxContainer/StartGameBtn");
+
+		_networkManager = GetNode<NetworkManager>("/root/NetworkManager");
+		_networkManager.PlayerListChanged += UpdatePlayerList;
 
 		_currentPanel = _mainPanel;
 		ShowPanel(_mainPanel, addToHistory: false);
@@ -42,12 +54,20 @@ public partial class MainMenu : Control
 		_settingsPanel.Visible = false;
 		_multiplayerPanel.Visible = false;
 		_joinPanel.Visible = false;
+		_lobbyPanel.Visible = false;
 
 		panelToShow.Visible = true;
 		_currentPanel = panelToShow;
 	}
 
-	public void _on_back_btn_pressed()
+	public void _on_play_btn_pressed() { ShowPanel(_playPanel); }
+	public void _on_character_btn_pressed() { ShowPanel(_characterPanel); }
+	public void _on_friendlist_btn_pressed() { ShowPanel(_friendlistPanel); }
+	public void _on_settings_btn_pressed() { ShowPanel(_settingsPanel); }
+	public void _on_multiplayer_btn_pressed() { ShowPanel(_multiplayerPanel); }
+	public void _on_exit_btn_pressed() { GetTree().Quit(); }
+	
+		public void _on_back_btn_pressed()
 	{
 		if (_panelHistory.Count > 0)
 		{
@@ -60,39 +80,46 @@ public partial class MainMenu : Control
 		}
 	}
 
-	public void _on_play_btn_pressed() { ShowPanel(_playPanel); }
-	public void _on_character_btn_pressed() { ShowPanel(_characterPanel); }
-	public void _on_friendlist_btn_pressed() { ShowPanel(_friendlistPanel); }
-	public void _on_settings_btn_pressed() { ShowPanel(_settingsPanel); }
-	public void _on_multiplayer_btn_pressed() { ShowPanel(_multiplayerPanel); }
-	public void _on_exit_btn_pressed() { GetTree().Quit(); }
-
 	public void _on_host_btn_pressed()
 	{
-		GD.Print("Host button pressed! Starting server immediately...");
-		
-		Node networkManager = GetNodeOrNull<Node>("/root/NetworkManager");
-		if (networkManager != null)
-		{
-			networkManager.Call("HostGame");
-		}
-	}
-
-	public void _on_join_btn_pressed()
-	{
-		ShowPanel(_joinPanel);
+		_networkManager.HostGame();
+		ShowPanel(_lobbyPanel);
+		_startGameBtn.Visible = true; 
 	}
 
 	public void _on_connect_btn_pressed()
 	{
 		LineEdit ipInput = GetNode<LineEdit>("JoinPanel/IpInput");
-		GD.Print("Connecting to server IP: " + ipInput.Text);
+		_networkManager.JoinGame(ipInput.Text);
+		ShowPanel(_lobbyPanel);
+		_startGameBtn.Visible = false;
+	}
+	
+	public void _on_start_game_btn_pressed()
+	{
+		_networkManager.StartGame();
+	}
 
-		Node networkManager = GetNodeOrNull<Node>("/root/NetworkManager");
-		if (networkManager != null)
+	private void UpdatePlayerList()
+	{
+		_playerList.Clear();
+		foreach (long playerId in _networkManager.Players)
 		{
-			networkManager.Call("JoinGame", ipInput.Text);
+			if (playerId == 1)
+				_playerList.AddItem("Player " + playerId + " (Host)");
+			else
+				_playerList.AddItem("Player " + playerId);
 		}
+	}
+	
+	public void _on_join_btn_pressed()
+	{
+		ShowPanel(_joinPanel);
+	}
+	
+	public void _on_singleplayer_btn_pressed()
+	{
+		GetTree().ChangeSceneToFile("res://Game.tscn");
 	}
 
 	// SETTINGS
