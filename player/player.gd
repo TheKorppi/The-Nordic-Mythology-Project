@@ -4,21 +4,35 @@ var health = 100
 
 #@onready var stun_timer: Timer = %StunTimer
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	if is_multiplayer_authority():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
+
 	if event is InputEventMouseButton:
 		#TODO Primary action
 		pass
-	elif event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)	
-		
 	
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	var speed = 5.5
-	var sprint_scalar = 2.0	
+	var sprint_scalar = 2.0
 	var rotation_speed = 0.000000001
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.y -= 20.0 * delta 
+		move_and_slide()
+		return
 	
 	# Pelaajahahmon kääntyminen
 	

@@ -11,13 +11,16 @@ public partial class NetworkManager : Node
 
 	[Signal]
 	public delegate void PlayerListChangedEventHandler();
+	
+	[Signal]
+	public delegate void ConnectionLostEventHandler();
 
 	public override void _Ready()
 	{
 		Multiplayer.PeerConnected += OnPeerConnected;
 		Multiplayer.PeerDisconnected += OnPeerDisconnected;
-		
 		Multiplayer.ConnectedToServer += OnConnectedToServer; 
+		Multiplayer.ServerDisconnected += OnServerDisconnected;
 	}
 
 	private void OnConnectedToServer()
@@ -29,21 +32,29 @@ public partial class NetworkManager : Node
 		EmitSignal(SignalName.PlayerListChanged);
 	}
 
-	public void HostGame()
+	public bool HostGame()
 	{
 		_peer = new ENetMultiplayerPeer();
 		Error error = _peer.CreateServer(PORT, MAX_PLAYERS);
 		
-		if (error != Error.Ok) return;
+		if (error != Error.Ok) 
+		{
+			GD.PrintErr("Palvelimen luonti epäonnistui! Portti voi olla jo käytössä.");
+			return false;
+		}
+		
 		Multiplayer.MultiplayerPeer = _peer;
 		
 		Players.Clear();
 		Players.Add(1);
 		EmitSignal(SignalName.PlayerListChanged);
+		
+		return true;
 	}
 
 	public void JoinGame(string ipAddress)
 	{
+		Players.Clear(); 
 		_peer = new ENetMultiplayerPeer();
 		Error error = _peer.CreateClient(ipAddress, PORT);
 		if (error != Error.Ok) return;
@@ -76,5 +87,28 @@ public partial class NetworkManager : Node
 	private void LoadGameScene()
 	{
 		GetTree().ChangeSceneToFile("res://Game.tscn");
+	}
+	
+	public void Disconnect()
+	{
+		Multiplayer.MultiplayerPeer = null;
+		
+		if (_peer != null)
+		{
+			_peer.Dispose();
+			_peer = null;
+		}
+		
+		Players.Clear();
+		EmitSignal(SignalName.PlayerListChanged);
+		
+		GD.Print("Yhteys katkaistu");
+	}
+	
+	private void OnServerDisconnected()
+	{
+		GD.Print("Palvelin suljettiin!");
+		Disconnect();
+		EmitSignal(SignalName.ConnectionLost);
 	}
 }

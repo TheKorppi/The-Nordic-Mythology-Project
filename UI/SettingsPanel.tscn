@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cjmdldbsbgihg"]
+
+[ext_resource type="Script" uid="uid://ddslsujx0n0c6" path="res://UI/SettingsPanel.cs" id="1_06d45"]
+[ext_resource type="Theme" uid="uid://dtjqwgrq4bng2" path="res://MenuTheme.tres" id="2_r3dp5"]
+
+[node name="SettingsPanel" type="Control" unique_id=473630038]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06d45")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1307144477]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -90.0
+offset_right = 175.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r3dp5")
+theme_override_constants/separation = 20
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer" unique_id=146150644]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sound"
+
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer" unique_id=915793775]
+layout_mode = 2
+min_value = 0.001
+max_value = 1.0
+step = 0.01
+value = 0.501
+
+[node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer" unique_id=812493313]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Fullscreen"
+
+[node name="BackBtn" type="Button" parent="VBoxContainer" unique_id=1715582117]
+layout_mode = 2
+text = "Back"
+
+[connection signal="value_changed" from="VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/FullscreenToggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="pressed" from="VBoxContainer/BackBtn" to="." method="_on_back_btn_pressed"]

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dq34w3q2i3vl6"]
+
+[ext_resource type="Script" uid="uid://u53pqaawgksa" path="res://UI/PauseMenu.cs" id="1_05bun"]
+[ext_resource type="Theme" uid="uid://dtjqwgrq4bng2" path="res://MenuTheme.tres" id="2_73kip"]
+[ext_resource type="PackedScene" uid="uid://cjmdldbsbgihg" path="res://UI/SettingsPanel.tscn" id="2_tsvmi"]
+[ext_resource type="Shader" uid="uid://blykgg0dbht0g" path="res://UI/blur.gdshader" id="3_kuww5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wf1sp"]
+shader = ExtResource("3_kuww5")
+shader_parameter/blur_amount = 2.5
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1339579492]
+script = ExtResource("1_05bun")
+
+[node name="BlurBackground" type="ColorRect" parent="." unique_id=254961726]
+material = SubResource("ShaderMaterial_wf1sp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="Control" parent="." unique_id=66380123]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_73kip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel" unique_id=370936967]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -185.0
+offset_right = 175.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ResumeBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=1195050807]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="SettingsBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=253452622]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="DisconnectBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=1542504532]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Disconnect"
+
+[node name="SettingsPanel" parent="." unique_id=473630038 instance=ExtResource("2_tsvmi")]
+visible = false
+theme = ExtResource("2_73kip")
+
+[connection signal="pressed" from="MenuPanel/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/DisconnectBtn" to="." method="_on_disconnect_btn_pressed"]
+[connection signal="Closed" from="SettingsPanel" to="." method="_on_settings_panel_closed"]
