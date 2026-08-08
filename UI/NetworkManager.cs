@@ -89,9 +89,9 @@ public partial class NetworkManager : Node
 		GetTree().ChangeSceneToFile("res://Game.tscn");
 	}
 	
-	public void Disconnect()
+public void Disconnect()
 	{
-		Multiplayer.MultiplayerPeer = null;
+		Multiplayer.MultiplayerPeer = new OfflineMultiplayerPeer(); 
 		
 		if (_peer != null)
 		{
@@ -101,7 +101,6 @@ public partial class NetworkManager : Node
 		
 		Players.Clear();
 		EmitSignal(SignalName.PlayerListChanged);
-		
 		GD.Print("Yhteys katkaistu");
 	}
 	

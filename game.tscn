@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ceq8v7sm0sijr" path="res://Game.cs" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dow3n5an7nor2" path="res://props/box.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://cgbjwtyxx4pjh" path="res://zone_1.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dq34w3q2i3vl6" path="res://UI/PauseMenu.tscn" id="3_feb5d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
-albedo_color = Color(0.92240256, 0.36037633, 0.42505872, 1)
-uv1_triplanar = true
 
 [sub_resource type="Environment" id="Environment_e2o6t"]
 background_mode = 1
@@ -20,36 +17,6 @@ fog_height_density = 0.1
 
 [node name="Game" type="Node3D" unique_id=785938888]
 script = ExtResource("1_e2o6t")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1750615821]
-transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6500001, -5, -0.4)
-use_collision = true
-size = Vector3(13, 10, 10)
-material = SubResource("StandardMaterial3D_80nbo")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=79489585]
-transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -5, 10.6)
-use_collision = true
-size = Vector3(15, 10, 10)
-material = SubResource("StandardMaterial3D_80nbo")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=839739582]
-transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -5, -11.4)
-use_collision = true
-size = Vector3(15, 10, 10)
-material = SubResource("StandardMaterial3D_80nbo")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1128904583]
-transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, -5, -0.39999962)
-use_collision = true
-size = Vector3(15, 10, 32)
-material = SubResource("StandardMaterial3D_80nbo")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=2073568314]
-transform = Transform3D(1.1, 0, 0, 0, 1, 0, 0, 0, 1, -16.25, -5, -0.39999962)
-use_collision = true
-size = Vector3(15, 10, 32)
-material = SubResource("StandardMaterial3D_80nbo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1647336000]
 transform = Transform3D(0.7071068, -0.49999997, -0.50000006, 0, -0.7071069, 0.7071067, -0.7071068, -0.49999997, -0.50000006, -7, 14, -7)
@@ -74,10 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9, 0)
 use_collision = true
 size = Vector3(21, 1, 37)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1616147051]
-transform = Transform3D(1, 0, 0, 0, 0.4226182, 0.9063078, 0, -0.9063078, 0.4226182, 0, 16, 12)
-fov = 70.0
-
 [node name="Players" type="Node3D" parent="." unique_id=1479882193]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=549751701]
@@ -85,3 +48,9 @@ _spawnable_scenes = PackedStringArray("uid://bx0bwt8foqg10")
 spawn_path = NodePath("../Players")
 
 [node name="PauseMenu" parent="." unique_id=1339579492 instance=ExtResource("3_feb5d")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1616147051]
+transform = Transform3D(1, 0, 0, 0, 0.4226182, 0.9063078, 0, -0.9063078, 0.4226182, 0, 16, 12)
+fov = 70.0
+
+[node name="Zone1" parent="." unique_id=1024559730 instance=ExtResource("3_fc0e3")]

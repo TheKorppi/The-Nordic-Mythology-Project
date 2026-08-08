@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://c5icay8roa66y" path="res://UI/Deutsch.ttf" id="1_b37jj"]
 [ext_resource type="Script" uid="uid://c37m4co2y2nu2" path="res://UI/MainMenu.cs" id="2_8aown"]
 [ext_resource type="PackedScene" uid="uid://cjmdldbsbgihg" path="res://UI/SettingsPanel.tscn" id="3_t6syg"]
+[ext_resource type="Texture2D" uid="uid://cl68o8vfbd8vj" path="res://UI/MM.jpg" id="3_y6s48"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk8dj"]
 bg_color = Color(0.7490162, 0.31869963, 0.18808869, 1)
@@ -124,6 +125,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_d8nwk")
 script = ExtResource("2_8aown")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1857398749]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_y6s48")
+expand_mode = 1
 
 [node name="MainPanel" type="Control" parent="." unique_id=1055230205]
 layout_mode = 1
