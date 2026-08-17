@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://1u0us0pjvxb7"]
+
+[ext_resource type="Script" uid="uid://b7o8bd3e4udxb" path="res://Maps/TeleportDoor.cs" id="1_q1ebo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8ain"]
+size = Vector3(6.086257, 2.850113, 0.36791992)
+
+[node name="TeleportDoor" type="Area3D" unique_id=1291020904]
+script = ExtResource("1_q1ebo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=845398700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09171748, 1.3633687, -0.121956825)
+shape = SubResource("BoxShape3D_k8ain")
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=1985371032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0011488199, 0.03505552, 1.7651241)
