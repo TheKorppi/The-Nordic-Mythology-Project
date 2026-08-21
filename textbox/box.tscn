@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bstfl64mik7q3"]
+
+[ext_resource type="FontFile" uid="uid://c5icay8roa66y" path="res://UI/Deutsch.ttf" id="1_s6y0b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slsb3"]
+bg_color = Color(0.12500417, 0.06700964, 0.040789954, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.973535, 0.9735351, 0.973535, 1)
+
+[node name="Textbox" type="CanvasLayer" unique_id=1285219130]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=261490047]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -429.0
+offset_right = -21.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=241920896]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slsb3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=511749848]
+layout_mode = 2
+size_flags_stretch_ratio = 2.18
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer" unique_id=1366177085]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/Panel" unique_id=1104464928]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 33.0
+offset_right = 1860.0
+offset_bottom = 383.0
+
+[node name="Start" type="Label" parent="MarginContainer/MarginContainer/Panel/HBoxContainer" unique_id=2639693]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_s6y0b")
+theme_override_font_sizes/font_size = 80
+text = "*"
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/Panel/HBoxContainer" unique_id=1282350596]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.99
+theme_override_fonts/font = ExtResource("1_s6y0b")
+theme_override_font_sizes/font_size = 80
+text = "Text piupau piupau piupau piupau piupau piupau piupau piupau"
+autowrap_mode = 3
+clip_text = true
+
+[node name="End" type="Label" parent="MarginContainer/MarginContainer/Panel/HBoxContainer" unique_id=1975345959]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_s6y0b")
+theme_override_font_sizes/font_size = 80
+text = "''"
