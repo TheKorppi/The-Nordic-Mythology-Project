@@ -5,4 +5,11 @@
 [node name="PlayerCamera" type="Camera3D" unique_id=1451876198]
 transform = Transform3D(1, 0, 0, 0, 0.57357645, 0.8191521, 0, -0.8191521, 0.57357645, 0, 3, 2)
 fov = 90.0
+[node name="camera_node" type="Node3D" unique_id=1491817340]
+script = ExtResource("1_itl3e")
+
+[node name="Player_Camera" type="Camera3D" parent="." unique_id=1271997382]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 3, 2)
+fov = 70.0
 script = ExtResource("1_itl3e")

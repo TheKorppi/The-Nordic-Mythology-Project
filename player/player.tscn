@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.5800781
 height = 2.5627136
+height = 1.7813568
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
 albedo_color = Color(0.19517082, 0.59399885, 0.556206, 1)
@@ -31,6 +32,7 @@ script = ExtResource("1_oul6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=414372498]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013925254, 1.2935973, 0.026751697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013925254, 0.90291893, 0.026751697)
 shape = SubResource("CapsuleShape3D_kqu6x")
 debug_color = Color(0.8987152, 0.97873, 0.99999994, 0.41960785)
 debug_fill = false
