@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co0gykgrgprev" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://cd4efrjy6aede" path="res://player/weapons/axe/axe.tscn" id="2_rkbax"]
+[ext_resource type="AudioStream" uid="uid://dcka6gycosuqf" path="res://Sounds/walking-stone.mp3" id="3_g1dw6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.5800781
@@ -69,3 +70,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.8,
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=217395467]
 replication_config = SubResource("SceneReplicationConfig_rkbax")
+
+[node name="WalkingStone" type="AudioStreamPlayer" parent="." unique_id=2115213884]
+stream = ExtResource("3_g1dw6")
+volume_db = -16.001

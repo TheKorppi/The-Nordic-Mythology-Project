@@ -84,6 +84,10 @@ mouse3={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations.en.translation", "res://translations.fi.translation")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

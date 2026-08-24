@@ -37,6 +37,9 @@ shape = SubResource("ConcavePolygonShape3D_rc8lt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0" unique_id=11779556]
 shape = SubResource("ConcavePolygonShape3D_x5gye")
 
+[node name="Body" parent="." index="2" unique_id=2131828560]
+visible = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" parent_id_path=PackedInt32Array(1456268272) index="0" unique_id=1806465535]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0" unique_id=2034531023]
@@ -55,3 +58,5 @@ transform = Transform3D(-0.9999944, 0, 0.003351118, 0, 1, 0, -0.003351118, 0, -0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="7" unique_id=275475341]
 replication_config = SubResource("SceneReplicationConfig_x5gye")
+
+[node name="MapCenter" type="Node3D" parent="." index="8" unique_id=88872322 groups=["map_centers"]]

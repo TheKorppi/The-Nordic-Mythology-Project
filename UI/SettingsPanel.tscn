@@ -31,7 +31,7 @@ theme_override_constants/separation = 20
 [node name="SoundLabel" type="Label" parent="VBoxContainer" unique_id=146150644]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Sound"
+text = "UI_VOLUME"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer" unique_id=915793775]
 layout_mode = 2
@@ -43,11 +43,24 @@ value = 0.501
 [node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer" unique_id=812493313]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Fullscreen"
+text = "UI_FULLSCREEN"
+
+[node name="SoundLabel2" type="Label" parent="VBoxContainer" unique_id=1893452431]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UI_LANGUAGE"
+
+[node name="LanguageButton" type="OptionButton" parent="VBoxContainer" unique_id=854175476]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.96
+alignment = 1
 
 [node name="BackBtn" type="Button" parent="VBoxContainer" unique_id=1715582117]
 layout_mode = 2
-text = "Back"
+text = "UI_BACK"
 
 [connection signal="value_changed" from="VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/FullscreenToggle" to="." method="_on_fullscreen_toggle_toggled"]

@@ -1,8 +1,36 @@
 [gd_scene format=3 uid="uid://dciw3ml6f7mor"]
 
-[ext_resource type="Script" uid="uid://b70uvs7mo8av" path="res://player/player_camera.gd" id="1_itl3e"]
+[sub_resource type="GDScript" id="GDScript_40t53"]
+script/source = "extends Camera3D
+
+var radius: float = 12.0
+var height: float = 16.0
+var rotation_speed: float = 2.5
+var current_angle: float = 0.0
+
+func _ready() -> void:
+	top_level = true 
+	fov = 70.0
+
+func _physics_process(delta: float) -> void:
+	var player = get_parent()
+	if not player or not player is Node3D:
+		return
+
+	var rot_input = Input.get_axis(\"ui_left\", \"ui_right\")
+
+	current_angle += rot_input * rotation_speed * delta
+
+	var offset_x = sin(current_angle) * radius
+	var offset_z = cos(current_angle) * radius
+
+	var target_pos = player.global_position + Vector3(offset_x, height, offset_z)
+	global_position = global_position.lerp(target_pos, 10.0 * delta)
+
+	look_at(player.global_position, Vector3.UP)
+"
 
 [node name="PlayerCamera" type="Camera3D" unique_id=1451876198]
 transform = Transform3D(1, 0, 0, 0, 0.57357645, 0.8191521, 0, -0.8191521, 0.57357645, 0, 3, 2)
 fov = 90.0
-script = ExtResource("1_itl3e")
+script = SubResource("GDScript_40t53")

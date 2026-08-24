@@ -39,6 +39,12 @@ properties/1/replication_mode = 0
 [node name="Zone1" unique_id=1024559730 instance=ExtResource("1_c0rng")]
 script = ExtResource("2_pk2om")
 
+[node name="Body" parent="." index="0" unique_id=1414602853]
+visible = false
+
+[node name="Plane" parent="Body" index="0" unique_id=873539229]
+visible = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane_001" parent_id_path=PackedInt32Array(580552401) index="0" unique_id=2115981810]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane_001/StaticBody3D" index="0" unique_id=17716006]
@@ -90,3 +96,5 @@ transform = Transform3D(-0.999937, 0, -0.011222232, 0, 1, 0, 0.011222232, 0, -0.
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="12" unique_id=1485745804]
 replication_config = SubResource("SceneReplicationConfig_pk2om")
+
+[node name="MapCenter" type="Node3D" parent="." index="13" unique_id=108738967 groups=["map_centers"]]

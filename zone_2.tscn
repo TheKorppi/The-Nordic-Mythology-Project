@@ -98,6 +98,9 @@ script = ExtResource("2_b33da")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0" unique_id=826999191]
 shape = SubResource("ConcavePolygonShape3D_65d4y")
 
+[node name="Body" parent="." index="1" unique_id=1827408380]
+visible = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cylinder_cell" parent_id_path=PackedInt32Array(540078243) index="0" unique_id=1784739994]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder_cell/StaticBody3D" index="0" unique_id=1755265650]
@@ -234,3 +237,5 @@ transform = Transform3D(0.037254177, 0, 0.99930584, 0, 1, 0, -0.99930584, 0, 0.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="89" unique_id=855594156]
 replication_config = SubResource("SceneReplicationConfig_b33da")
+
+[node name="MapCenter" type="Node3D" parent="." index="90" unique_id=1539824835 groups=["map_centers"]]

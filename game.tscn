@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dbbkboyeb4v68" path="res://zone_5.tscn" id="9_215e1"]
 [ext_resource type="PackedScene" uid="uid://byfm5e0pvc8tl" path="res://zone_6.tscn" id="10_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://d4bbsmndjo2my" path="res://zone_7.tscn" id="11_80cx4"]
+[ext_resource type="Script" uid="uid://b3xpxgfh76wib" path="res://map_camera.gd" id="11_mfdv2"]
+[ext_resource type="AudioStream" uid="uid://dmo24sq2mp7hx" path="res://Music/chillailumusiikki.mp3" id="12_iotsf"]
 
 [sub_resource type="Environment" id="Environment_e2o6t"]
 background_mode = 1
@@ -41,3 +43,11 @@ spawn_path = NodePath("../Players")
 [node name="DungeonGenerator" type="Node3D" parent="." unique_id=1383169516]
 script = ExtResource("5_7jktm")
 RoomScenes = Array[PackedScene]([ExtResource("3_fc0e3"), ExtResource("6_mfdv2"), ExtResource("7_iotsf"), ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("10_7sc4i"), ExtResource("11_80cx4")])
+
+[node name="MapCamera" type="Camera3D" parent="." unique_id=810693349]
+script = ExtResource("11_mfdv2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=130628201]
+stream = ExtResource("12_iotsf")
+volume_db = -14.157
+autoplay = true

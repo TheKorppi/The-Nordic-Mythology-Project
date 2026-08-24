@@ -32,6 +32,9 @@ script = ExtResource("2_7cvkv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0" unique_id=1154267932]
 shape = SubResource("ConcavePolygonShape3D_1a2p3")
 
+[node name="Body" parent="." index="1" unique_id=1336839373]
+visible = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" parent_id_path=PackedInt32Array(1799815285) index="0" unique_id=119396914]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0" unique_id=169672356]
@@ -61,3 +64,6 @@ transform = Transform3D(0.05198738, 0, -0.99864775, 0, 1, 0, 0.99864775, 0, 0.05
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9" unique_id=1934765918]
 replication_config = SubResource("SceneReplicationConfig_7cvkv")
+
+[node name="MapCenter" type="Node3D" parent="." index="10" unique_id=123232791 groups=["map_centers"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.23140597, 0)

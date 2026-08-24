@@ -47,17 +47,17 @@ theme_override_constants/separation = 20
 [node name="ResumeBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=1195050807]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Resume"
+text = "UI_RESUME"
 
 [node name="SettingsBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=253452622]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Settings"
+text = "UI_SETTINGS"
 
 [node name="DisconnectBtn" type="Button" parent="MenuPanel/VBoxContainer" unique_id=1542504532]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Disconnect"
+text = "UI_QUIT"
 
 [node name="SettingsPanel" parent="." unique_id=473630038 instance=ExtResource("2_tsvmi")]
 visible = false

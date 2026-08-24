@@ -39,3 +39,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049179077, 0, -24.64343)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="4" unique_id=280705073]
 replication_config = SubResource("SceneReplicationConfig_fqju5")
+
+[node name="MapCenter" type="Node3D" parent="." index="5" unique_id=1293219815 groups=["map_centers"]]
