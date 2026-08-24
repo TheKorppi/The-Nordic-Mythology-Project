@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bckjlp22igkbj"]
+
+[ext_resource type="Script" uid="uid://bpl4t56e65dod" path="res://karhu.gd" id="1_n25bt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ffdxe"]
+radius = 1.1181641
+height = 5.3305664
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py7nx"]
+albedo_color = Color(0.50348866, 0.38103804, 0.25331953, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ffdxe"]
+radius = 1.2460938
+height = 5.38208
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ffdxe"]
+top_radius = 0.15771484
+bottom_radius = 0.15771484
+height = 1.5883789
+
+[node name="Karhu" type="CharacterBody3D" unique_id=1135366186]
+script = ExtResource("1_n25bt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1325077323]
+transform = Transform3D(1, 0, 0, 0, 0.02064979, 0.99978673, 0, -0.99978673, 0.02064979, 0, 1.2944088, -0.1396786)
+mesh = SubResource("CapsuleMesh_ffdxe")
+surface_material_override/0 = SubResource("StandardMaterial3D_py7nx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790302459]
+transform = Transform3D(1, 0, 0, 0, -0.017174516, 0.9998525, 0, -0.9998525, -0.017174516, 0, 1.2390959, -0.18529424)
+shape = SubResource("CapsuleShape3D_ffdxe")
+
+[node name="VisionRay" type="RayCast3D" parent="." unique_id=1734905043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2164853, -2.7108436)
+target_position = Vector3(0, 0, -10)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=793177066]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1577025733]
+transform = Transform3D(1, 0, 0, 0, -0.029754462, -0.99955726, 0, 0.99955726, -0.029754462, 0, 1.2183362, -2.5555923)
+mesh = SubResource("CylinderMesh_ffdxe")
