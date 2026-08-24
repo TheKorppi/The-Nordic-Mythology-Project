@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dv5w0o2w2tlnq"]
 
 [ext_resource type="Script" uid="uid://ceq8v7sm0sijr" path="res://Game.cs" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dow3n5an7nor2" path="res://props/box.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cgbjwtyxx4pjh" path="res://zone_1.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dq34w3q2i3vl6" path="res://UI/PauseMenu.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bckjlp22igkbj" path="res://enemies/karhu.tscn" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://bn030c0tveoaq" path="res://UI/DungeonGenerator.cs" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bkbod4qni44sb" path="res://zone_2.tscn" id="6_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://gqqwscsxbibi" path="res://zone_3.tscn" id="7_iotsf"]
@@ -12,9 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://d4bbsmndjo2my" path="res://zone_7.tscn" id="11_80cx4"]
 [ext_resource type="Script" uid="uid://b3xpxgfh76wib" path="res://map_camera.gd" id="11_mfdv2"]
 [ext_resource type="AudioStream" uid="uid://dmo24sq2mp7hx" path="res://Music/chillailumusiikki.mp3" id="12_iotsf"]
-[ext_resource type="PackedScene" uid="uid://bx0bwt8foqg10" path="res://player/player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://dow3n5an7nor2" path="res://props/box.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://bckjlp22igkbj" path="res://enemies/karhu.tscn" id="4_fc0e3"]
 
 [sub_resource type="Environment" id="Environment_e2o6t"]
 background_mode = 1
@@ -37,9 +36,6 @@ uv1_triplanar = true
 
 [node name="Game" type="Node3D" unique_id=785938888]
 script = ExtResource("1_e2o6t")
-
-[node name="Player" parent="." unique_id=172001739 instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -5.9604645e-07, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1647336000]
 transform = Transform3D(0.7071068, -0.49999997, -0.50000006, 0, -0.7071069, 0.7071067, -0.7071068, -0.49999997, -0.50000006, -7, 14, -7)
@@ -72,6 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 0.4226182, 0.9063078, 0, -0.9063078, 0.42261
 fov = 70.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1667352048]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_ffdxe")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1750615821]
@@ -116,32 +113,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
 [node name="Box4" parent="NavigationRegion3D" unique_id=1710900218 instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D" unique_id=903207721]
-transform = Transform3D(-2.9103558, 0, 0, 0, 20.959682, 0, 0, 0, 34.32731, 26.26071, -0.5219116, 0)
-use_collision = true
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1183394887]
-transform = Transform3D(8.470171, 0, 0, 0, 7.921692, 0, 0, 0, 99.04537, -23.73355, -0.35788035, -1.4089422)
-use_collision = true
-size = Vector3(0.27337646, 2.581543, 0.40144348)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D" unique_id=793848774]
-transform = Transform3D(-0.014043592, 0, 99.045235, 0, 7.9216914, 0, -8.470159, 0, -0.16421779, 2.0409312, 0.100835085, -17.923609)
-use_collision = true
-size = Vector3(0.27337646, 2.581543, 0.4936905)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1949314378]
-transform = Transform3D(-0.014043592, 0, 99.045235, 0, 7.9216914, 0, -8.470159, 0, -0.16421779, 2.0409312, 0.100835085, 16.647535)
-use_collision = true
-size = Vector3(0.27337646, 2.581543, 0.4936905)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1744565715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9, 0)
-use_collision = true
-size = Vector3(21, 1, 37)
-
 [node name="Karhu" parent="." unique_id=1135366186 instance=ExtResource("4_fc0e3")]
-transform = Transform3D(0.6077021, 0, -0.7941651, 0, 1, 0, 0.7941651, 0, 0.6077021, -17.030937, 0, 10.2738)
+transform = Transform3D(0.6077021, 0, -0.7941651, 0, 1, 0, 0.7941651, 0, 0.6077021, -8.148715, 0, -2.4699059)
 
 [node name="Karhu2" parent="." unique_id=867197566 instance=ExtResource("4_fc0e3")]
-transform = Transform3D(0.011000964, 0, 0.9999395, 0, 1, 0, -0.9999395, 0, 0.011000964, 18.500723, 0, 0)
+transform = Transform3D(0.011000964, 0, 0.9999395, 0, 1, 0, -0.9999395, 0, 0.011000964, 0.2830906, 0, 5.0401535)

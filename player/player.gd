@@ -8,8 +8,6 @@ var health = 100.0
 #@onready var stun_timer: Timer = %StunTimer
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
 
-
-
 func _enter_tree():
 	var authority_id = str(name).to_int()
 	if authority_id == 0:
@@ -17,9 +15,9 @@ func _enter_tree():
 	set_multiplayer_authority(authority_id)
 
 func _ready():
-if is_multiplayer_authority():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-PlayerManager.player = self
+	if is_multiplayer_authority():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	PlayerManager.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
@@ -29,8 +27,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		#TODO Primary action
 		pass
-elif event.is_action_pressed("ui_cancel"):
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -133,7 +129,6 @@ func player_hit(damage):
 	if health < 0:
 		health = 0
 	
-
 
 func throw_bomb():
 	const FIRE_BOMB = preload("res://player/weapons/bomb/fire_bomb.tscn")
