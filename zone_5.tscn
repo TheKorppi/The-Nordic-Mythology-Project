@@ -18,6 +18,9 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_os24p"]
+size = Vector3(14.9599, 4.3148193, 0.08880615)
+
 [node name="Zone5" unique_id=1644675683 instance=ExtResource("1_vecdn")]
 script = ExtResource("2_os24p")
 
@@ -35,9 +38,25 @@ shape = SubResource("ConcavePolygonShape3D_os24p")
 transform = Transform3D(0.034725077, 0, 0.9993969, 0, 1, 0, -0.9993969, 0, 0.034725077, -9.781295, 0, -4.5142746)
 
 [node name="TeleportDoor2" parent="." index="4" unique_id=2013634189 instance=ExtResource("3_ij8oo")]
-transform = Transform3D(0.025304519, 0, -0.99967974, 0, 1, 0, 0.99967974, 0, 0.025304519, 9.723393, 0, -3.7134361)
+transform = Transform3D(0.025304519, 0, -0.99967974, 0, 1, 0, 0.99967974, 0, 0.025304519, 9.583153, 0, -3.7134361)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="5" unique_id=918724806]
 replication_config = SubResource("SceneReplicationConfig_os24p")
 
 [node name="MapCenter" type="Node3D" parent="." index="6" unique_id=1273724765 groups=["map_centers"]]
+
+[node name="InvWall" type="StaticBody3D" parent="." index="7" unique_id=95677069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.142066, 0, -5.5066433)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall" index="0" unique_id=1295860095]
+transform = Transform3D(0.0074699055, 0, -0.99997216, 0, 1, 0, 0.99997216, 0, 0.0074699055, -0.1536665, 1.6574097, 2.962175)
+shape = SubResource("BoxShape3D_os24p")
+debug_fill = false
+
+[node name="InvWall2" type="StaticBody3D" parent="." index="8" unique_id=1416107639]
+transform = Transform3D(0.008953452, 0, 0.9999599, 0, 1, 0, -0.9999599, 0, 0.008953452, -10.698253, 0, -5.682407)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall2" index="0" unique_id=820270365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_os24p")
+debug_fill = false

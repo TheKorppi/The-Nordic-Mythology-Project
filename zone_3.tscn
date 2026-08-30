@@ -24,6 +24,9 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7cvkv"]
+size = Vector3(7.4470215, 4.3148193, 0.08880615)
+
 [node name="Zone3" unique_id=931280562 instance=ExtResource("1_11i2g")]
 script = ExtResource("2_7cvkv")
 
@@ -51,19 +54,40 @@ shape = SubResource("ConcavePolygonShape3D_y3kc2")
 shape = SubResource("ConcavePolygonShape3D_67hr4")
 
 [node name="TeleportDoor" parent="." index="5" unique_id=1291020904 instance=ExtResource("3_y3kc2")]
-transform = Transform3D(0.00015707413, 0, 1, 0, 1, 0, -1, 0, 0.00015707413, -14.5601635, 0, 0)
+transform = Transform3D(0.00015707413, 0, 1, 0, 1, 0, -1, 0, 0.00015707413, -14.414941, 0, 0)
 
 [node name="TeleportDoor2" parent="." index="6" unique_id=1805312445 instance=ExtResource("3_y3kc2")]
 transform = Transform3D(0.8104815, 0, 0.5857643, 0, 1, 0, -0.5857643, 0, 0.8104815, -2.0188303, 0, -15.69005)
 
 [node name="TeleportDoor3" parent="." index="7" unique_id=1161831520 instance=ExtResource("3_y3kc2")]
-transform = Transform3D(-0.99992037, 0, -0.012618358, 0, 1, 0, 0.012618358, 0, -0.99992037, 2.9777474, 0, 16.560741)
+transform = Transform3D(-0.99992037, 0, -0.012618358, 0, 1, 0, 0.012618358, 0, -0.99992037, 2.9777474, 0, 16.34987)
 
-[node name="TeleportDoor4" parent="." index="8" unique_id=354429209 instance=ExtResource("3_y3kc2")]
-transform = Transform3D(0.05198738, 0, -0.99864775, 0, 1, 0, 0.99864775, 0, 0.05198738, 19.927132, 0, 1.5053034)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9" unique_id=1934765918]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="8" unique_id=1934765918]
 replication_config = SubResource("SceneReplicationConfig_7cvkv")
 
-[node name="MapCenter" type="Node3D" parent="." index="10" unique_id=123232791 groups=["map_centers"]]
+[node name="MapCenter" type="Node3D" parent="." index="9" unique_id=123232791 groups=["map_centers"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.23140597, 0)
+
+[node name="InvWall" type="StaticBody3D" parent="." index="10" unique_id=1537898916]
+transform = Transform3D(0.83942074, 0, 0.5434822, 0, 1, 0, -0.5434822, 0, 0.83942074, -2.514694, 0, -16.782719)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall" index="0" unique_id=1652745309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_7cvkv")
+debug_fill = false
+
+[node name="InvWall2" type="StaticBody3D" parent="." index="11" unique_id=1396072753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1306357, 0, 15.881542)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall2" index="0" unique_id=374654282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_7cvkv")
+debug_fill = false
+
+[node name="InvWall3" type="StaticBody3D" parent="." index="12" unique_id=1219612670]
+transform = Transform3D(-0.025828036, 0, 0.9996664, 0, 1, 0, -0.9996664, 0, -0.025828036, -15.542516, 0, -0.114748)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall3" index="0" unique_id=647607807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_7cvkv")
+debug_fill = false
