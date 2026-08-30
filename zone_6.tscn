@@ -24,6 +24,9 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5gye"]
+size = Vector3(7.4470215, 4.3148193, 0.08880615)
+
 [node name="Zone6" unique_id=797779961 instance=ExtResource("1_2vh47")]
 script = ExtResource("2_x5gye")
 
@@ -60,3 +63,19 @@ transform = Transform3D(-0.9999944, 0, 0.003351118, 0, 1, 0, -0.003351118, 0, -0
 replication_config = SubResource("SceneReplicationConfig_x5gye")
 
 [node name="MapCenter" type="Node3D" parent="." index="8" unique_id=88872322 groups=["map_centers"]]
+
+[node name="InvWall" type="StaticBody3D" parent="." index="9" unique_id=1777954796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.326216)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall" index="0" unique_id=1746162423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_x5gye")
+debug_fill = false
+
+[node name="InvWall2" type="StaticBody3D" parent="." index="10" unique_id=97890254]
+transform = Transform3D(-0.015009241, 0, 0.99988735, 0, 1, 0, -0.99988735, 0, -0.015009241, 11.43013, 0, -0.040937424)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall2" index="0" unique_id=295332438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_x5gye")
+debug_fill = false

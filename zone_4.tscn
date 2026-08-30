@@ -18,6 +18,9 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fqju5"]
+size = Vector3(19.77655, 4.3148193, 0.08880615)
+
 [node name="Zone4" unique_id=993597394 instance=ExtResource("1_sqrmp")]
 script = ExtResource("2_fqju5")
 
@@ -32,7 +35,7 @@ shape = SubResource("ConcavePolygonShape3D_c6lar")
 shape = SubResource("ConcavePolygonShape3D_fqju5")
 
 [node name="TeleportDoor" parent="." index="2" unique_id=1291020904 instance=ExtResource("3_peno3")]
-transform = Transform3D(-0.9970949, 0.07610961, -0.0030008703, 0.07612614, 0.99708104, -0.005846497, 0.0025471374, -0.0060579646, -0.9999784, 0, 0, 23.771555)
+transform = Transform3D(-0.9970949, 0.07610961, -0.0030008703, 0.07612614, 0.99708104, -0.005846497, 0.0025471374, -0.0060579646, -0.9999784, 0, 0, 24.36011)
 
 [node name="TeleportDoor2" parent="." index="3" unique_id=463342677 instance=ExtResource("3_peno3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049179077, 0, -24.64343)
@@ -41,3 +44,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049179077, 0, -24.64343)
 replication_config = SubResource("SceneReplicationConfig_fqju5")
 
 [node name="MapCenter" type="Node3D" parent="." index="5" unique_id=1293219815 groups=["map_centers"]]
+
+[node name="InvWall" type="StaticBody3D" parent="." index="6" unique_id=1237200191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.67694)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall" index="0" unique_id=622466742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012512207, 1.6574097, 0.6521492)
+shape = SubResource("BoxShape3D_fqju5")
+debug_fill = false
+
+[node name="InvWall2" type="StaticBody3D" parent="." index="7" unique_id=1360472739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.303232)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall2" index="0" unique_id=1908923473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_fqju5")
+debug_fill = false

@@ -15,6 +15,9 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ve6xq"]
+size = Vector3(7.4470215, 4.3148193, 0.08880615)
+
 [node name="Zone7" unique_id=856395260 instance=ExtResource("1_rpd3w")]
 script = ExtResource("2_ve6xq")
 
@@ -24,12 +27,28 @@ script = ExtResource("2_ve6xq")
 shape = SubResource("ConcavePolygonShape3D_lekpy")
 
 [node name="TeleportDoor" parent="." index="1" unique_id=1291020904 instance=ExtResource("3_qcnc8")]
-transform = Transform3D(0.03380055, 0, -0.9994287, 0, 1, 0, 0.9994287, 0, 0.03380055, 12.425113, 0, 0.068223834)
+transform = Transform3D(0.03380055, 0, -0.9994287, 0, 1, 0, 0.9994287, 0, 0.03380055, 12.074568, 0, 0.068223834)
 
 [node name="TeleportDoor2" parent="." index="2" unique_id=14326746 instance=ExtResource("3_qcnc8")]
-transform = Transform3D(-0.9991015, 0, -0.042381376, 0, 1, 0, 0.042381376, 0, -0.9991015, -0.0003376007, 0, 11.578846)
+transform = Transform3D(-0.9991015, 0, -0.042381376, 0, 1, 0, 0.042381376, 0, -0.9991015, -0.0003376007, 0, 11.501954)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="3" unique_id=1260408544]
 replication_config = SubResource("SceneReplicationConfig_ve6xq")
 
 [node name="MapCenter" type="Node3D" parent="." index="4" unique_id=2058715817 groups=["map_centers"]]
+
+[node name="InvWall" type="StaticBody3D" parent="." index="5" unique_id=749083124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.05288)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall" index="0" unique_id=944361854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_ve6xq")
+debug_fill = false
+
+[node name="InvWall2" type="StaticBody3D" parent="." index="6" unique_id=762794007]
+transform = Transform3D(0.002967082, 0, 0.99999565, 0, 1, 0, -0.99999565, 0, 0.002967082, 11.709716, 0, -0.06594467)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvWall2" index="0" unique_id=1767210995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40393066, 1.6574097, 0.65215015)
+shape = SubResource("BoxShape3D_ve6xq")
+debug_fill = false
