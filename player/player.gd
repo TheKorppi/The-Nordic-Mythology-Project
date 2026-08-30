@@ -120,6 +120,7 @@ func _physics_process(delta):
 	velocity.y -= 20.0 * delta
 	
 	move_and_slide()
+	$AnimationTree.set("parameters/playback/rigAction_002", velocity.x != 0 && velocity.z != 0)
 	
 	if Input.is_action_just_pressed("primary_fire"):
 		throw_bomb()
@@ -158,3 +159,4 @@ func teleport(new_pos: Vector3):
 				best_center = center_node.global_position
 				
 		cam.move_to_new_room(best_center)
+		
