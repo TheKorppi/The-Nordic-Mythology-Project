@@ -21,7 +21,7 @@ size = Vector3(7.4470215, 4.3148193, 0.08880615)
 [node name="Zone7" unique_id=856395260 instance=ExtResource("1_rpd3w")]
 script = ExtResource("2_ve6xq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Plane" parent_id_path=PackedInt32Array(1086705482) index="0" unique_id=1905776051]
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" parent_id_path=PackedInt32Array(1609576442) index="0" unique_id=1905776051]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0" unique_id=1521596658]
 shape = SubResource("ConcavePolygonShape3D_lekpy")
