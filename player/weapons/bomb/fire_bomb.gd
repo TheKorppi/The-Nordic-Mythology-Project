@@ -20,5 +20,8 @@ func _on_fuse_timeout():
 		if target.is_in_group("Props"):
 			var source = self.global_transform.origin
 			target.Prop_hit(source)
+			
+		if target.is_in_group("enemies"):
+			pass
 	
 	queue_free()

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cd4efrjy6aede"]
 
+[ext_resource type="Script" uid="uid://dfo5rs30mxq5t" path="res://player/weapons/axe/axe.gd" id="1_2n50j"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0htw"]
 albedo_color = Color(0.6292236, 0.41780937, 0.25354335, 1)
 
@@ -12,19 +14,90 @@ albedo_color = Color(0.4849202, 0.4849202, 0.4849202, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_aa332"]
 material = SubResource("StandardMaterial3D_5vujy")
 
+[sub_resource type="Animation" id="Animation_m0htw"]
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2n50j"]
+resource_name = "axe_swing"
+length = 0.265
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.013320749, 0.078796335, 0.2647906),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.7917885), Vector3(0, 0, -0.00072044524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.013986787, 0.060942426, 0.0782594, 0.2543434, 0.265),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0.4, 0, 0), Vector3(0.362, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p28rs"]
+_data = {
+&"RESET": SubResource("Animation_m0htw"),
+&"axe_swing": SubResource("Animation_2n50j")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0htw"]
 size = Vector3(0.19920349, 0.3688736, 0.19213867)
 
 [node name="Axe" type="Area3D" unique_id=16307633]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_2n50j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1907971039]
+[node name="Handle" type="MeshInstance3D" parent="." unique_id=1907971039]
 transform = Transform3D(0.06233067, 0, 0, 0, 0.701476, 0, 0, 0, 0.0625504, 0, 1.3183959, 0)
 mesh = SubResource("CylinderMesh_2n50j")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1731063638]
+[node name="Blade" type="MeshInstance3D" parent="." unique_id=1731063638]
 transform = Transform3D(0.0030726597, 0.2776393, 7.861149e-06, -0.0024846832, 0.00024103705, 0.2454139, 0.09205821, -0.009260361, 0.0066235415, 0.14698529, 1.8893082, -0.009844258)
 mesh = SubResource("PrismMesh_aa332")
 
-[node name="Edge" type="CollisionShape3D" parent="." unique_id=1727354015]
-transform = Transform3D(2.0497696, 0, 0, 0, 1, 0, 0, 0, 1, 0.17778197, 1.8889369, -0.01677838)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=418387447]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_p28rs")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1727354015]
+unique_name_in_owner = true
+transform = Transform3D(2.2547467, 4.0745374e-10, 7.7841396e-09, -2.9103837e-11, 1.1000001, -1.1175874e-08, 3.2653134e-09, 3.7252903e-09, 1.1000005, 0.1808616, 1.8889, -0.017471785)
 shape = SubResource("BoxShape3D_m0htw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

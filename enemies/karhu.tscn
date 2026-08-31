@@ -1,17 +1,79 @@
 [gd_scene format=3 uid="uid://bckjlp22igkbj"]
 
 [ext_resource type="Script" uid="uid://bpl4t56e65dod" path="res://karhu.gd" id="1_n25bt"]
+ new-movement
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ffdxe"]
+radius = 1.1181641
+height = 5.3305664
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py7nx"]
+resource_local_to_scene = true
+albedo_color = Color(0.5019608, 0.38039216, 0.25490198, 1)
+=======
 [ext_resource type="PackedScene" uid="uid://cemeg1labjbbm" path="res://enemies/Garhu.glb" id="2_w3ndm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ffdxe"]
 radius = 1.2460938
 height = 5.38208
+master
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ffdxe"]
 top_radius = 0.15771484
 bottom_radius = 0.15771484
 height = 1.5883789
 
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ffdxe"]
+radius = 1.2460938
+height = 5.4556274
+
+[sub_resource type="Animation" id="Animation_n25bt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w3ndm"]
+resource_name = "karhu_hurt"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40240934, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.0943952, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0h3fk"]
+_data = {
+&"RESET": SubResource("Animation_n25bt"),
+&"karhu_hurt": SubResource("Animation_w3ndm")
+}
+
+[node name="Karhu" type="CharacterBody3D" unique_id=1135366186 groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+script = ExtResource("1_n25bt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1325077323]
+transform = Transform3D(1, 0, 0, 0, 0.020649826, 0.99978673, 0, -0.99978673, 0.020649826, 0, 1.2944088, -0.1396786)
+mesh = SubResource("CapsuleMesh_ffdxe")
+surface_material_override/0 = SubResource("StandardMaterial3D_py7nx")
+=======
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0h3fk"]
 animation = &"Idle"
 
@@ -46,6 +108,7 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 0.99999994, 0, 8.742278e-08, 0,
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 1.2390959, -0.18529424)
 shape = SubResource("CapsuleShape3D_ffdxe")
 
+
 [node name="VisionRay" type="RayCast3D" parent="." unique_id=1734905043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2164853, -2.7108436)
 target_position = Vector3(0, 0, -10)
@@ -56,6 +119,24 @@ target_position = Vector3(0, 0, -10)
 transform = Transform3D(1, 0, 0, 0, -0.029754462, -0.99955726, 0, 0.99955726, -0.029754462, 0, 1.2183362, -2.5555923)
 mesh = SubResource("CylinderMesh_ffdxe")
 
+
+[node name="Karhu_Area3D" type="Area3D" parent="." unique_id=678613559]
+unique_name_in_owner = true
+
+[node name="Karhu_Collision" type="CollisionShape3D" parent="Karhu_Area3D" unique_id=1790302459 groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, -0.017174516, 0.9998525, 0, -0.9998525, -0.017174516, 0, 1.2397275, -0.14852598)
+shape = SubResource("CapsuleShape3D_ffdxe")
+
+[node name="Karhu_Ground_Collission" type="CollisionShape3D" parent="." unique_id=2076196890 groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, -0.017174516, 0.9998525, 0, -0.9998525, -0.017174516, 0, 1.2397275, -0.14852598)
+shape = SubResource("CapsuleShape3D_ffdxe")
+
+[node name="Karhu_Animation" type="AnimationPlayer" parent="." unique_id=699613916]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_0h3fk")
+
+[connection signal="animation_finished" from="Karhu_Animation" to="." method="_on_karhu_animation_animation_finished"]
+=======
 [node name="Garhu" parent="." unique_id=1899180255 instance=ExtResource("2_w3ndm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
@@ -283,3 +364,4 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Garhu/AnimationPlayer")
 
 [editable path="Garhu"]
+
