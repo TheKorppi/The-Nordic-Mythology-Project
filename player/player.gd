@@ -4,10 +4,14 @@ var speed = 9.0
 var sprint_scalar = 2.0
 var rotation_speed = 1.0
 var health = 100.0
+var is_swinging_weapon = false
 
-#@onready var stun_timer: Timer = %StunTimer
+@onready var axe_hitbox = %WeaponHitbox
+@onready var axe_animation = %AxeAnimation
+
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
 @onready var animation_tree: AnimationTree = $AnimationTree
+
 func _enter_tree():
 	var authority_id = str(name).to_int()
 	if authority_id == 0:
@@ -36,10 +40,16 @@ func _input(event):
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
-
-	var speed = 5.5
-	var rotation_speed = 10.0
-
+	
+	player_movement(delta)
+	move_and_slide()
+	
+	if Input.is_action_pressed("primary_fire") && not is_swinging_weapon:
+		#throw_bomb() toteutaan eri nappiin, tai slottiin? mahdollisesti kirveen heitto
+		axe_animation.play("axe_swing")
+		is_swinging_weapon = true
+		
+func player_movement(delta):
 	# Pelaajan liikkuminen
 	# WASD
 	if Input.is_action_pressed("move_right"):
@@ -120,18 +130,17 @@ func _physics_process(delta):
 	# Painovoima
 	velocity.y -= 20.0 * delta
 	
-	move_and_slide()
-	
-	
-	if Input.is_action_just_pressed("primary_fire"):
-		throw_bomb()
-	
+func _on_axe_swing_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "axe_swing":
+		is_swinging_weapon = false
+		#if !Input.is_action_pressed("primary_fire"):
+		axe_hitbox.monitoring = false
+
 func player_hit(damage):
 	health -= damage
 	if health < 0:
 		health = 0
 	
-
 func throw_bomb():
 	const FIRE_BOMB = preload("res://player/weapons/bomb/fire_bomb.tscn")
 	var new_bomb = FIRE_BOMB.instantiate()
