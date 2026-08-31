@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbu548etdulcw" path="res://Maps/Zone1.glb" id="1_c0rng"]
 [ext_resource type="Script" uid="uid://dbrvitdbf10f0" path="res://UI/Room.cs" id="2_pk2om"]
+[ext_resource type="Script" uid="uid://2pomgbn63af" path="res://cylinder.gd" id="3_8v2ou"]
 [ext_resource type="PackedScene" uid="uid://1u0us0pjvxb7" path="res://Maps/TeleportDoor.tscn" id="3_j01f8"]
 [ext_resource type="Shader" uid="uid://bwsvw3krdjr2g" path="res://new_shader.gdshader" id="4_j01f8"]
 
@@ -98,7 +99,10 @@ shape = SubResource("ConcavePolygonShape3D_y4wpb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_003/StaticBody3D" index="0" unique_id=2144395511]
 shape = SubResource("ConcavePolygonShape3D_ksui8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cylinder" parent_id_path=PackedInt32Array(1632473593) index="0" unique_id=1602996858]
+[node name="Cylinder" parent="." index="6" unique_id=1632473593]
+script = ExtResource("3_8v2ou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cylinder" index="0" unique_id=1602996858]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder/StaticBody3D" index="0" unique_id=844402252]
 shape = SubResource("ConcavePolygonShape3D_dm4en")
