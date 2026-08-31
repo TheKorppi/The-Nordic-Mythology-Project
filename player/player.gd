@@ -7,7 +7,7 @@ var health = 100.0
 
 #@onready var stun_timer: Timer = %StunTimer
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
-
+@onready var animation_tree: AnimationTree = $AnimationTree
 func _enter_tree():
 	var authority_id = str(name).to_int()
 	if authority_id == 0:
@@ -15,6 +15,7 @@ func _enter_tree():
 	set_multiplayer_authority(authority_id)
 
 func _ready():
+	
 	if is_multiplayer_authority():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	PlayerManager.player = self
@@ -120,7 +121,7 @@ func _physics_process(delta):
 	velocity.y -= 20.0 * delta
 	
 	move_and_slide()
-	$AnimationTree.set("parameters/playback/rigAction_002", velocity.x != 0 && velocity.z != 0)
+	
 	
 	if Input.is_action_just_pressed("primary_fire"):
 		throw_bomb()
