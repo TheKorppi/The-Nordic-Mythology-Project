@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bdoala2wjicdb"]
-
-[ext_resource type="PackedScene" uid="uid://bygpex0wtrxgn" path="res://player/playerbase.glb" id="1_lqixw"]
-
-[node name="playerbase" unique_id=1055760689 instance=ExtResource("1_lqixw")]

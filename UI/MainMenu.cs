@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+
 public partial class MainMenu : Control
 {
 	private Control _mainPanel;
@@ -34,23 +35,8 @@ public partial class MainMenu : Control
 
 		_networkManager = GetNode<NetworkManager>("/root/NetworkManager");
 		_networkManager.PlayerListChanged += UpdatePlayerList;
-		_networkManager.ConnectionLost += OnConnectionLost;
-		_currentPanel = _mainPanel;
-		ShowPanel(_mainPanel, addToHistory: false);
-	}
-	
-	public override void _ExitTree()
-	{
-		if (_networkManager != null)
-		{
-			_networkManager.PlayerListChanged -= UpdatePlayerList;
-			_networkManager.ConnectionLost -= OnConnectionLost;
-		}
-	}
 
-	private void OnConnectionLost()
-	{
-		_panelHistory.Clear();
+		_currentPanel = _mainPanel;
 		ShowPanel(_mainPanel, addToHistory: false);
 	}
 
@@ -81,13 +67,8 @@ public partial class MainMenu : Control
 	public void _on_multiplayer_btn_pressed() { ShowPanel(_multiplayerPanel); }
 	public void _on_exit_btn_pressed() { GetTree().Quit(); }
 	
-	public void _on_back_btn_pressed()
+		public void _on_back_btn_pressed()
 	{
-		if (_currentPanel == _lobbyPanel)
-		{
-			_networkManager.Disconnect();
-		}
-
 		if (_panelHistory.Count > 0)
 		{
 			Control previousPanel = _panelHistory.Pop();
@@ -101,24 +82,15 @@ public partial class MainMenu : Control
 
 	public void _on_host_btn_pressed()
 	{
-		bool success = _networkManager.HostGame();
-		
-		if (success)
-		{
-			ShowPanel(_lobbyPanel);
-			_startGameBtn.Visible = true; 
-		}
-		else
-		{
-			GD.Print("Ei menty lobbyyn, koska serveriä ei saatu pystyyn.");
-		}
+		_networkManager.HostGame();
+		ShowPanel(_lobbyPanel);
+		_startGameBtn.Visible = true; 
 	}
 
 	public void _on_connect_btn_pressed()
 	{
-		LineEdit ipInput = GetNode<LineEdit>("JoinPanel/VBoxContainer/IpInput");
+		LineEdit ipInput = GetNode<LineEdit>("JoinPanel/IpInput");
 		_networkManager.JoinGame(ipInput.Text);
-		
 		ShowPanel(_lobbyPanel);
 		_startGameBtn.Visible = false;
 	}
@@ -130,8 +102,6 @@ public partial class MainMenu : Control
 
 	private void UpdatePlayerList()
 	{
-		if (!IsInstanceValid(_playerList)) return;
-
 		_playerList.Clear();
 		foreach (long playerId in _networkManager.Players)
 		{
@@ -151,9 +121,19 @@ public partial class MainMenu : Control
 	{
 		GetTree().ChangeSceneToFile("res://Game.tscn");
 	}
-	
-	public void _on_settings_panel_closed()
+
+	// SETTINGS
+	public void _on_volume_slider_value_changed(float value)
 	{
-		_on_back_btn_pressed();
+		int busIndex = AudioServer.GetBusIndex("Master");
+		AudioServer.SetBusVolumeDb(busIndex, Mathf.LinearToDb(value));
+	}
+
+	public void _on_fullscreen_toggle_toggled(bool isToggled)
+	{
+		if (isToggled)
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+		else
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
 	}
 }
