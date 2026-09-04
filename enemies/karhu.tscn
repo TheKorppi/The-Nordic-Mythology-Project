@@ -36,6 +36,18 @@ states/Walk/node = SubResource("AnimationNodeAnimation_wn18p")
 states/Walk/position = Vector2(572, 101)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfuoy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_qkyku"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_aasrh")]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3ndm"]
+radius = 1.4990234
+height = 2.9980469
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w3ndm"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Karhu" type="CharacterBody3D" unique_id=1135366186]
 script = ExtResource("1_n25bt")
 
@@ -59,10 +71,10 @@ mesh = SubResource("CylinderMesh_ffdxe")
 [node name="Garhu" parent="." unique_id=1899180255 instance=ExtResource("2_w3ndm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="metarig" parent="Garhu" index="0" unique_id=697278537]
+[node name="metarig" parent="Garhu" index="0" unique_id=1790275294]
 visible = false
 
-[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 550306973) index="0" unique_id=1659320619]
+[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 503989632) index="0" unique_id=523329964]
 bones/2/rotation = Quaternion(0.9960571, 0.004880417, 0.040033728, -0.07901788)
 bones/6/rotation = Quaternion(0.99457794, -0.007050005, -0.06743325, -0.078853175)
 bones/10/rotation = Quaternion(0.0045310277, -0.14631176, 0.98922795, -0.0006701607)
@@ -251,18 +263,18 @@ bones/253/rotation = Quaternion(0.60468584, 0.056560382, -0.050839916, 0.7928249
 bones/258/rotation = Quaternion(0.9967382, 0, 0, -0.08070306)
 bones/259/position = Vector3(9.1283616e-24, 5.7259996e-08, 7.303993e-08)
 bones/260/rotation = Quaternion(0.9961143, 2.7140898e-23, -4.9661677e-17, -0.088070594)
-bones/261/rotation = Quaternion(0.99281347, 0.018497871, 0.002204094, -0.118213855)
-bones/263/rotation = Quaternion(-7.997829e-08, 2.0781399e-09, -0.009314761, 0.9999566)
+bones/261/rotation = Quaternion(0.98842996, 0.09500952, 0.0113143, -0.11769178)
+bones/263/rotation = Quaternion(-7.9208924e-08, 7.680711e-09, -0.047895376, 0.9988524)
 bones/267/position = Vector3(0, 0.6342842, -3.3976448e-09)
-bones/268/rotation = Quaternion(0.09096915, -0.00036346918, -3.3249613e-05, 0.99585366)
-bones/269/rotation = Quaternion(0.18583198, 0.0038230517, -0.018371537, 0.9824024)
+bones/268/rotation = Quaternion(0.090969004, -0.001873189, -0.00017134991, 0.99585193)
+bones/269/rotation = Quaternion(0.18485957, 0.019626822, -0.09436065, 0.9780276)
 bones/271/scale = Vector3(0.9999998, 1.0000005, 0.9999772)
 bones/275/rotation = Quaternion(0.00084729533, 0, 0, 0.99999964)
 bones/275/scale = Vector3(1.0000001, 0.9999998, 1.0000098)
 bones/276/rotation = Quaternion(-0.07882086, 3.8371929e-22, 8.869915e-24, 0.9968889)
 bones/276/scale = Vector3(1.0000002, 0.9999999, 1.0000036)
-bones/277/rotation = Quaternion(0.09096915, -0.00036346918, -3.3249595e-05, 0.99585366)
-bones/278/rotation = Quaternion(0.18583198, 0.0038230512, -0.018371534, 0.9824024)
+bones/277/rotation = Quaternion(0.09096901, -0.0018731891, -0.00017134991, 0.995852)
+bones/278/rotation = Quaternion(0.18485957, 0.019626824, -0.09436066, 0.9780276)
 bones/279/position = Vector3(0.379625, 1.4756429, 0.09761822)
 bones/279/rotation = Quaternion(0.061094467, 0.97818416, 0.10511951, -0.16844308)
 bones/279/scale = Vector3(0.99999994, 19.461718, 1)
@@ -276,10 +288,20 @@ bones/282/position = Vector3(-0.28133336, 2.6519532, 0.17846549)
 bones/282/rotation = Quaternion(0.9819125, -0.060285248, 0.13171779, -0.1219174)
 bones/282/scale = Vector3(0.99999994, 16.656404, 1)
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=173904091]
-root_node = NodePath("../Garhu")
+[node name="Karhu_Animation" type="AnimationTree" parent="." unique_id=173904091]
+unique_name_in_owner = true
+root_node = NodePath("%Karhu_Animation/../Garhu")
 tree_root = SubResource("AnimationNodeStateMachine_7rpi6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Garhu/AnimationPlayer")
+
+[node name="Karhu_Area3D" type="Area3D" parent="." unique_id=785632266]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Karhu_Area3D" unique_id=682930795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2376099, 0)
+shape = SubResource("CapsuleShape3D_w3ndm")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1813190106]
+replication_config = SubResource("SceneReplicationConfig_w3ndm")
 
 [editable path="Garhu"]

@@ -8,7 +8,7 @@ var is_swinging_weapon = false
 
 @onready var axe_hitbox = %WeaponHitbox
 @onready var axe_animation = %AxeAnimation
-
+@onready var audio_listener = $AudioListener3D
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -19,9 +19,10 @@ func _enter_tree():
 	set_multiplayer_authority(authority_id)
 
 func _ready():
-	
 	if is_multiplayer_authority():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		audio_listener.make_current()
+		
 	PlayerManager.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
