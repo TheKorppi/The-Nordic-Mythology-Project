@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var navigation = $NavigationAgent3D
 @onready var animation = %Karhu_Animation
 @onready var enemy_hitbox : Area3D = $Karhu_Area3D
+@onready var growl_sound = $GrowlSound
+@onready var growl_timer = $GrowlTimer
 
 const UPDATE_TIME = 0.2
 const SPEED = 150.0
@@ -15,6 +17,11 @@ var is_hurt = false
 
 var target
 var update_timer := 0.0
+
+func _ready():
+	if is_multiplayer_authority():
+		growl_timer.wait_time = randf_range(2.0, 10.0)
+		growl_timer.start()
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
@@ -86,3 +93,17 @@ func defeat_enemy():
 func _on_karhu_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "karhu_hurt":
 		is_hurt = false
+
+
+func _on_growl_timer_timeout() -> void:
+	if not is_multiplayer_authority():
+		return
+	growl_timer.wait_time = randf_range(5.0, 10.0)
+	growl_timer.start()
+	
+	rpc("play_growl_sound")
+
+@rpc("authority", "call_local", "unreliable")
+func play_growl_sound():
+	if enemy_health > 0:
+		growl_sound.play()

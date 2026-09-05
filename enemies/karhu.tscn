@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpl4t56e65dod" path="res://karhu.gd" id="1_n25bt"]
 [ext_resource type="PackedScene" uid="uid://cemeg1labjbbm" path="res://enemies/Garhu.glb" id="2_w3ndm"]
+[ext_resource type="AudioStream" uid="uid://by6oyrits5twi" path="res://Sounds/bear-growl.mp3" id="3_0h3fk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ffdxe"]
 radius = 1.2460938
@@ -263,18 +264,18 @@ bones/253/rotation = Quaternion(0.60468584, 0.056560382, -0.050839916, 0.7928249
 bones/258/rotation = Quaternion(0.9967382, 0, 0, -0.08070306)
 bones/259/position = Vector3(9.1283616e-24, 5.7259996e-08, 7.303993e-08)
 bones/260/rotation = Quaternion(0.9961143, 2.7140898e-23, -4.9661677e-17, -0.088070594)
-bones/261/rotation = Quaternion(0.98842996, 0.09500952, 0.0113143, -0.11769178)
-bones/263/rotation = Quaternion(-7.9208924e-08, 7.680711e-09, -0.047895376, 0.9988524)
+bones/261/rotation = Quaternion(0.9929857, -1.8322947e-07, 1.5388432e-06, -0.118234396)
+bones/263/rotation = Quaternion(-8.195639e-08, 4.9468696e-17, 4.3737543e-18, 1)
 bones/267/position = Vector3(0, 0.6342842, -3.3976448e-09)
-bones/268/rotation = Quaternion(0.090969004, -0.001873189, -0.00017134991, 0.99585193)
-bones/269/rotation = Quaternion(0.18485957, 0.019626822, -0.09436065, 0.9780276)
+bones/268/rotation = Quaternion(0.09096916, -0.00034122393, -3.116838e-05, 0.99585366)
+bones/269/rotation = Quaternion(0.18601985, 1.0541538e-06, 3.7697802e-07, 0.98254603)
 bones/271/scale = Vector3(0.9999998, 1.0000005, 0.9999772)
 bones/275/rotation = Quaternion(0.00084729533, 0, 0, 0.99999964)
 bones/275/scale = Vector3(1.0000001, 0.9999998, 1.0000098)
 bones/276/rotation = Quaternion(-0.07882086, 3.8371929e-22, 8.869915e-24, 0.9968889)
 bones/276/scale = Vector3(1.0000002, 0.9999999, 1.0000036)
-bones/277/rotation = Quaternion(0.09096901, -0.0018731891, -0.00017134991, 0.995852)
-bones/278/rotation = Quaternion(0.18485957, 0.019626824, -0.09436066, 0.9780276)
+bones/277/rotation = Quaternion(0.09096916, -0.00034122387, -3.1168373e-05, 0.99585366)
+bones/278/rotation = Quaternion(0.1860199, 1.0541539e-06, 3.76978e-07, 0.982546)
 bones/279/position = Vector3(0.379625, 1.4756429, 0.09761822)
 bones/279/rotation = Quaternion(0.061094467, 0.97818416, 0.10511951, -0.16844308)
 bones/279/scale = Vector3(0.99999994, 19.461718, 1)
@@ -303,5 +304,17 @@ shape = SubResource("CapsuleShape3D_w3ndm")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1813190106]
 replication_config = SubResource("SceneReplicationConfig_w3ndm")
+
+[node name="GrowlSound" type="AudioStreamPlayer3D" parent="." unique_id=1838958782]
+stream = ExtResource("3_0h3fk")
+volume_db = -5.48
+max_db = -0.477
+max_distance = 20.0
+
+[node name="GrowlTimer" type="Timer" parent="." unique_id=1204130862]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="GrowlTimer" to="." method="_on_growl_timer_timeout"]
 
 [editable path="Garhu"]
