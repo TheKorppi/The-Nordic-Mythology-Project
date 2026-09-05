@@ -5,12 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ffdxe"]
 radius = 1.2460938
-height = 5.38208
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ffdxe"]
-top_radius = 0.15771484
-bottom_radius = 0.15771484
-height = 1.5883789
+height = 4.262512
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0h3fk"]
 animation = &"Idle"
@@ -36,14 +31,14 @@ states/Walk/node = SubResource("AnimationNodeAnimation_wn18p")
 states/Walk/position = Vector2(572, 101)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfuoy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_qkyku"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_aasrh")]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffdxe"]
+size = Vector3(2.8, 2.4, 2.1000001)
+
 [node name="Karhu" type="CharacterBody3D" unique_id=1135366186]
 script = ExtResource("1_n25bt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1325077323]
-transform = Transform3D(-1, 0, -8.742277e-08, 0, 0.99999994, 0, 8.742278e-08, 0, -0.99999994, 0, 1, -2.125)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790302459]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 1.2390959, -0.18529424)
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 1.2390959, -0.34993654)
 shape = SubResource("CapsuleShape3D_ffdxe")
 
 [node name="VisionRay" type="RayCast3D" parent="." unique_id=1734905043]
@@ -52,17 +47,13 @@ target_position = Vector3(0, 0, -10)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=793177066]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1577025733]
-transform = Transform3D(1, 0, 0, 0, -0.029754462, -0.99955726, 0, 0.99955726, -0.029754462, 0, 1.2183362, -2.5555923)
-mesh = SubResource("CylinderMesh_ffdxe")
-
 [node name="Garhu" parent="." unique_id=1899180255 instance=ExtResource("2_w3ndm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="metarig" parent="Garhu" index="0" unique_id=697278537]
+[node name="metarig" parent="Garhu" index="0" unique_id=73056141]
 visible = false
 
-[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 550306973) index="0" unique_id=1659320619]
+[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 1894212280) index="0" unique_id=933953717]
 bones/2/rotation = Quaternion(0.9960571, 0.004880417, 0.040033728, -0.07901788)
 bones/6/rotation = Quaternion(0.99457794, -0.007050005, -0.06743325, -0.078853175)
 bones/10/rotation = Quaternion(0.0045310277, -0.14631176, 0.98922795, -0.0006701607)
@@ -251,18 +242,18 @@ bones/253/rotation = Quaternion(0.60468584, 0.056560382, -0.050839916, 0.7928249
 bones/258/rotation = Quaternion(0.9967382, 0, 0, -0.08070306)
 bones/259/position = Vector3(9.1283616e-24, 5.7259996e-08, 7.303993e-08)
 bones/260/rotation = Quaternion(0.9961143, 2.7140898e-23, -4.9661677e-17, -0.088070594)
-bones/261/rotation = Quaternion(0.99281347, 0.018497871, 0.002204094, -0.118213855)
-bones/263/rotation = Quaternion(-7.997829e-08, 2.0781399e-09, -0.009314761, 0.9999566)
+bones/261/rotation = Quaternion(0.9342674, 0.3364002, 0.040056515, -0.1112423)
+bones/263/rotation = Quaternion(-8.107402e-08, -1.6330771e-08, -0.17194931, 0.9851059)
 bones/267/position = Vector3(0, 0.6342842, -3.3976448e-09)
-bones/268/rotation = Quaternion(0.09096915, -0.00036346918, -3.3249613e-05, 0.99585366)
-bones/269/rotation = Quaternion(0.18583198, 0.0038230517, -0.018371537, 0.9824024)
+bones/268/rotation = Quaternion(0.090967044, -0.006816053, -0.00062276935, 0.9958305)
+bones/269/rotation = Quaternion(0.17264286, 0.06931461, -0.33405873, 0.92401016)
 bones/271/scale = Vector3(0.9999998, 1.0000005, 0.9999772)
 bones/275/rotation = Quaternion(0.00084729533, 0, 0, 0.99999964)
 bones/275/scale = Vector3(1.0000001, 0.9999998, 1.0000098)
 bones/276/rotation = Quaternion(-0.07882086, 3.8371929e-22, 8.869915e-24, 0.9968889)
 bones/276/scale = Vector3(1.0000002, 0.9999999, 1.0000036)
-bones/277/rotation = Quaternion(0.09096915, -0.00036346918, -3.3249595e-05, 0.99585366)
-bones/278/rotation = Quaternion(0.18583198, 0.0038230512, -0.018371534, 0.9824024)
+bones/277/rotation = Quaternion(0.09096704, -0.006816053, -0.00062276935, 0.9958304)
+bones/278/rotation = Quaternion(0.17264286, 0.0693146, -0.3340587, 0.92401016)
 bones/279/position = Vector3(0.379625, 1.4756429, 0.09761822)
 bones/279/rotation = Quaternion(0.061094467, 0.97818416, 0.10511951, -0.16844308)
 bones/279/scale = Vector3(0.99999994, 19.461718, 1)
@@ -277,9 +268,23 @@ bones/282/rotation = Quaternion(0.9819125, -0.060285248, 0.13171779, -0.1219174)
 bones/282/scale = Vector3(0.99999994, 16.656404, 1)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=173904091]
-root_node = NodePath("../Garhu")
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/../Garhu")
 tree_root = SubResource("AnimationNodeStateMachine_7rpi6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Garhu/AnimationPlayer")
+
+[node name="Karhu_Attack_Hitbox" type="Area3D" parent="." unique_id=718870611]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.136245, -2.8482876)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Karhu_Attack_Hitbox" unique_id=806848908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099999875, 0.20000005, 0.5500002)
+shape = SubResource("BoxShape3D_ffdxe")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+[connection signal="body_entered" from="Karhu_Attack_Hitbox" to="." method="_on_karhu_hitbox_body_entered"]
+[connection signal="body_exited" from="Karhu_Attack_Hitbox" to="." method="_on_karhu_hitbox_body_exited"]
 
 [editable path="Garhu"]

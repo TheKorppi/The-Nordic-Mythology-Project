@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cd4efrjy6aede"]
 
+[ext_resource type="Script" uid="uid://dfo5rs30mxq5t" path="res://player/weapons/axe/axe.gd" id="1_2n50j"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0htw"]
 albedo_color = Color(0.6292236, 0.41780937, 0.25354335, 1)
 
@@ -12,19 +14,80 @@ albedo_color = Color(0.4849202, 0.4849202, 0.4849202, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_aa332"]
 material = SubResource("StandardMaterial3D_5vujy")
 
+[sub_resource type="Animation" id="Animation_m0htw"]
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.8325957, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2n50j"]
+resource_name = "axe_swing"
+length = 0.265
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.012909116, 0.079207964, 0.26447397),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.8325957, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.014398419, 0.060942426, 0.0782594, 0.2543434, 0.265),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, 0, 0), Vector3(0.362, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p28rs"]
+_data = {
+&"RESET": SubResource("Animation_m0htw"),
+&"axe_swing": SubResource("Animation_2n50j")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0htw"]
-size = Vector3(0.19920349, 0.3688736, 0.19213867)
+size = Vector3(0.19920349, 0.3688736, 0.18745117)
 
 [node name="Axe" type="Area3D" unique_id=16307633]
+transform = Transform3D(0.99999976, 0, 0, 0, -0.258819, -0.96592593, 0, 0.96592575, -0.25881907, 0, 0, 0)
+script = ExtResource("1_2n50j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1907971039]
-transform = Transform3D(0.06233067, 0, 0, 0, 0.701476, 0, 0, 0, 0.0625504, 0, 1.3183959, 0)
+[node name="Handle" type="MeshInstance3D" parent="." unique_id=1907971039]
+transform = Transform3D(-2.724561e-09, 0, -0.0625504, 0, 0.701476, 0, 0.062330678, 0, -2.7341647e-09, 0, 1.3183959, 0)
 mesh = SubResource("CylinderMesh_2n50j")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1731063638]
-transform = Transform3D(0.0030726597, 0.2776393, 7.861149e-06, -0.0024846832, 0.00024103705, 0.2454139, 0.09205821, -0.009260361, 0.0066235415, 0.14698529, 1.8893082, -0.009844258)
+[node name="Blade" type="MeshInstance3D" parent="Handle" unique_id=1731063638]
+transform = Transform3D(-6.436825e-08, 4.4567566, 0, 6.436825e-08, 8.51546e-15, 0.3655277, 1.472574, 1.9481102e-07, -1.5977722e-08, 2.358, 0.814, 0)
 mesh = SubResource("PrismMesh_aa332")
 
-[node name="Edge" type="CollisionShape3D" parent="." unique_id=1727354015]
-transform = Transform3D(2.0497696, 0, 0, 0, 1, 0, 0, 0, 1, 0.17778197, 1.8889369, -0.01677838)
+[node name="axe_swing" type="AnimationPlayer" parent="." unique_id=418387447]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_p28rs")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1727354015]
+unique_name_in_owner = true
+transform = Transform3D(-1.0938388e-07, -1.6763809e-09, -1.1000006, -3.5721276e-10, 1.1000001, -1.3224786e-08, 2.2547467, 5.0749815e-10, -4.4803794e-08, 0.005031485, 1.8889002, 0.18252821)
 shape = SubResource("BoxShape3D_m0htw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="axe_swing" to="." method="_on_axe_swing_animation_finished"]
+[connection signal="animation_started" from="axe_swing" to="." method="_on_axe_swing_animation_started"]

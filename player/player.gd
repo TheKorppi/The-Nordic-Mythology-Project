@@ -2,12 +2,18 @@ extends CharacterBody3D
 
 var speed = 9.0
 var sprint_scalar = 2.0
-var rotation_speed = 1.0
+var rotation_speed = 15.0
 var health = 100.0
 
-#@onready var stun_timer: Timer = %StunTimer
+var attack_timer := 0.0
+const WEAPON_SWING_TIME = 0.4
+
+@onready var axe_hitbox = %WeaponHitbox
+@onready var axe_animation = %AxeAnimation
+
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
 @onready var animation_tree: AnimationTree = $AnimationTree
+
 func _enter_tree():
 	var authority_id = str(name).to_int()
 	if authority_id == 0:
@@ -15,7 +21,6 @@ func _enter_tree():
 	set_multiplayer_authority(authority_id)
 
 func _ready():
-	
 	if is_multiplayer_authority():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	PlayerManager.player = self
@@ -25,10 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
 
-	if event is InputEventMouseButton:
-		#TODO Primary action
-		pass
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		# throw weapon
@@ -36,10 +37,17 @@ func _input(event):
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
-
-	var speed = 5.5
-	var rotation_speed = 10.0
-
+	
+	player_movement(delta)
+	move_and_slide()
+	
+	attack_timer -= delta
+	if Input.is_action_pressed("primary_fire") && attack_timer <= 0.0:
+		#throw_bomb() toteutaan eri nappiin, tai slottiin? mahdollisesti kirveen heitto
+		axe_animation.play("axe_swing")
+		attack_timer = WEAPON_SWING_TIME
+		
+func player_movement(delta):
 	# Pelaajan liikkuminen
 	# WASD
 	if Input.is_action_pressed("move_right"):
@@ -88,7 +96,8 @@ func _physics_process(delta):
 		direction = (cam_right * input_direction2D.x - cam_forward * input_direction2D.y).normalized()
 
 	if direction != Vector3.ZERO:
-		var target_angle = atan2(-direction.x, -direction.z)
+		# rotation_speed vakio arvo on 15. Se on var, joten siten voi halutessaan kutsua, jos sitä haluaa muuttaa
+		var target_angle = atan2(-direction.x * delta * rotation_speed, -direction.z * delta * rotation_speed)
 		rotation.y = lerp_angle(rotation.y, target_angle, rotation_speed * delta)
 
 		velocity.x = direction.x * speed
@@ -116,22 +125,17 @@ func _physics_process(delta):
 
 	if not is_on_floor() and WalkingStone.playing:
 		WalkingStone.stop()
+		velocity.y -= 20.0 * delta
 
 	# Painovoima
 	velocity.y -= 20.0 * delta
-	
-	move_and_slide()
-	
-	
-	if Input.is_action_just_pressed("primary_fire"):
-		throw_bomb()
-	
-func player_hit(damage):
+
+func take_damage(damage):
 	health -= damage
 	if health < 0:
 		health = 0
+	print(str(damage) + " Damage Taken!")
 	
-
 func throw_bomb():
 	const FIRE_BOMB = preload("res://player/weapons/bomb/fire_bomb.tscn")
 	var new_bomb = FIRE_BOMB.instantiate()
