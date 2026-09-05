@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Nordic Mythology Project"
 run/main_scene="uid://cvgqkiq0w17yx"
-config/features=PackedStringArray("4.7", "C#", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

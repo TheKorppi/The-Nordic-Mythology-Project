@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dow3n5an7nor2" path="res://props/box.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cgbjwtyxx4pjh" path="res://zone_1.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dq34w3q2i3vl6" path="res://UI/PauseMenu.tscn" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://bckjlp22igkbj" path="res://enemies/karhu.tscn" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://bn030c0tveoaq" path="res://UI/DungeonGenerator.cs" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bkbod4qni44sb" path="res://zone_2.tscn" id="6_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://gqqwscsxbibi" path="res://zone_3.tscn" id="7_iotsf"]
@@ -113,8 +112,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
 [node name="Box4" parent="NavigationRegion3D" unique_id=1710900218 instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
-[node name="Karhu" parent="." unique_id=1135366186 instance=ExtResource("4_fc0e3")]
-transform = Transform3D(0.6077021, 0, -0.7941651, 0, 1, 0, 0.7941651, 0, 0.6077021, -8.148715, 0, -2.4699059)
+[node name="Enemies" type="Node3D" parent="." unique_id=891217308]
 
-[node name="Karhu2" parent="." unique_id=867197566 instance=ExtResource("4_fc0e3")]
-transform = Transform3D(0.011000964, 0, 0.9999395, 0, 1, 0, -0.9999395, 0, 0.011000964, 0.2830906, 0, 5.0401535)
+[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="." unique_id=93848897]
+_spawnable_scenes = PackedStringArray("uid://bckjlp22igkbj")
+spawn_path = NodePath("../Enemies")

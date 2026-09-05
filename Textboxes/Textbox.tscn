@@ -17,10 +17,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 41.0
+offset_left = 353.0
 offset_top = -343.0
-offset_right = -28.0
-offset_bottom = -32.0
+offset_right = -303.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 16
@@ -37,6 +37,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -28.0
+offset_right = 6.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
@@ -50,8 +53,30 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=733096927]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer" unique_id=299876924]
+[node name="Start" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer" unique_id=299876924]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_g68g5")
 theme_override_font_sizes/font_size = 44
-text = "Text"
+text = "*"
+
+[node name="Text" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer" unique_id=597010611]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_g68g5")
+theme_override_font_sizes/font_size = 47
+text = "Otsoseni, lintuseni,
+Mesi kynsi, metsoseni,
+Tehkäämme sula sovinto
+Raja rauha rapsatkaamme
+"
+
+[node name="End" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer" unique_id=1948226052]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_g68g5")
+theme_override_font_sizes/font_size = 41
+text = "Sirkei Potahvei 1888"

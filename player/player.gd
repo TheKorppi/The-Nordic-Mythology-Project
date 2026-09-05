@@ -4,6 +4,7 @@ var speed = 9.0
 var sprint_scalar = 2.0
 var rotation_speed = 15.0
 var health = 100.0
+var is_swinging_weapon = false
 
 var attack_timer := 0.0
 const WEAPON_SWING_TIME = 0.4
@@ -11,6 +12,8 @@ const WEAPON_SWING_TIME = 0.4
 @onready var axe_hitbox = %WeaponHitbox
 @onready var axe_animation = %AxeAnimation
 
+
+@onready var audio_listener = $AudioListener3D
 @onready var WalkingStone: AudioStreamPlayer = $WalkingStone
 @onready var animation_tree: AnimationTree = $AnimationTree
 
@@ -23,6 +26,8 @@ func _enter_tree():
 func _ready():
 	if is_multiplayer_authority():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		audio_listener.make_current()
+		
 	PlayerManager.player = self
 
 func _unhandled_input(event: InputEvent) -> void:

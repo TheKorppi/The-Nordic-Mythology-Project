@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bduld26i6uxj0"]
+
+[ext_resource type="FontFile" uid="uid://c5icay8roa66y" path="res://UI/Deutsch.ttf" id="1_v4d2p"]
+
+[node name="Text" type="Node3D" unique_id=1160634243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62260187, 0)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1282467391]
+text = "Otsoseni, lintuseni,
+Mesi kynsi, metsoseni.
+Tehkäämme sula sovinto.
+Raja rauha rapsatkaamme.
+Sirkei Potahvei 1888"
+font = ExtResource("1_v4d2p")
