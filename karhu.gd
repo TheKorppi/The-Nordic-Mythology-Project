@@ -114,7 +114,7 @@ func take_damage(damage):
 func _on_karhu_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player") and not targets_in_range.has(body):
 		targets_in_range.append(body)
-		# play attack animation
+		animation.play("Attack")
 
 func _on_karhu_hitbox_body_exited(body: Node3D) -> void:
 	if targets_in_range.has(body):
@@ -122,7 +122,7 @@ func _on_karhu_hitbox_body_exited(body: Node3D) -> void:
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
-		"karhu_attack":
+		"Attack":
 			damage_players()
 			is_attacking = false
 		"karhu_death":
@@ -130,7 +130,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	match anim_name:
-		"karhu_attack":
+		"Attack":
 			is_attacking = true
 		"Idle":
 			pass

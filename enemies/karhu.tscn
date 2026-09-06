@@ -5026,7 +5026,7 @@ libraries/ = SubResource("AnimationLibrary_n1fep")
 [node name="Karhu_AnimationTree" type="AnimationTree" parent="." unique_id=173904091]
 unique_name_in_owner = true
 active = false
-root_node = NodePath("%Karhu_Animation/../Garhu")
+root_node = NodePath("%Karhu_AnimationTree/../Garhu")
 tree_root = SubResource("AnimationNodeStateMachine_7rpi6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Garhu/AnimationPlayer")

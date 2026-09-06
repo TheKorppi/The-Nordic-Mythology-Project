@@ -143,7 +143,6 @@ func take_damage(damage):
 	health -= damage
 	if health < 0:
 		health = 0
-	print(str(damage) + " Damage Taken!")
 	
 func throw_bomb():
 	const FIRE_BOMB = preload("res://player/weapons/bomb/fire_bomb.tscn")
