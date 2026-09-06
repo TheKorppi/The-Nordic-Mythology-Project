@@ -4964,6 +4964,9 @@ _data = {
 &"Walk": SubResource("Animation_j2f1s")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfuoy"]
+animation = &"Attack"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0h3fk"]
 animation = &"Idle"
 
@@ -4981,12 +4984,32 @@ advance_expression = "velocity.length() > 0.2"
 advance_mode = 2
 advance_expression = "velocity.length() <= 0.2"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pqnm2"]
+advance_mode = 2
+advance_expression = "is_attacking = true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k7ipf"]
+advance_mode = 2
+advance_expression = "is_attacking = true
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_reumc"]
+advance_mode = 2
+advance_expression = "velocity.length() <= 0.2 && is_attacking = false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3knhc"]
+advance_mode = 2
+advance_expression = "is_attacking = false && velocity.length() > 0.2"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7rpi6"]
+states/Attack/node = SubResource("AnimationNodeAnimation_jfuoy")
+states/Attack/position = Vector2(455, -11)
 states/Idle/node = SubResource("AnimationNodeAnimation_0h3fk")
 states/Idle/position = Vector2(352, 100)
 states/Walk/node = SubResource("AnimationNodeAnimation_wn18p")
 states/Walk/position = Vector2(572, 101)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfuoy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_qkyku"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_aasrh")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfuoy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_qkyku"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_aasrh"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_pqnm2"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k7ipf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_reumc"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_3knhc")]
+graph_offset = Vector2(-16, -74)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3ndm"]
 radius = 1.4990234
