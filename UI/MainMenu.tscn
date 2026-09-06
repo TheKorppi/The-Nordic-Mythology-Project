@@ -419,7 +419,7 @@ layout_mode = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=135808200]
 stream = ExtResource("5_y6s48")
-volume_db = 2.548
+volume_db = -3.863
 autoplay = true
 
 [connection signal="pressed" from="MainPanel/VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]

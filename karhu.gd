@@ -1,12 +1,11 @@
 extends CharacterBody3D
 
 @onready var navigation = $NavigationAgent3D
-@onready var anim_tree = %AnimationTree
+@onready var animation = $Garhu/AnimationPlayer
 @onready var enemy_hitbox : Area3D = $Karhu_Area3D
 @onready var growl_sound = $GrowlSound
 @onready var growl_timer = $GrowlTimer
 
-var state_machine
 const UPDATE_TIME = 0.2
 const SPEED = 150
 const SMOOTHING_FACTOR = 0.1
@@ -17,10 +16,6 @@ var enemy_health = 200.0
 var is_hurt = false
 
 @export var player_path : NodePath
-var attack_damage = 40.0
-@onready var enemy_hitbox : Area3D = $Karhu_Area3D
-
-var enemy_health = 200.0
 
 var is_attacking = false
 var targets_in_range = []
@@ -30,12 +25,9 @@ var update_timer := 0.0
 
 var next_pos
 var dir
-var current_facing
-var new_dir
 
 func _ready():
 	target = PlayerManager.player
-	state_machine = anim_tree.get("parameters/playback")
 
 	if is_multiplayer_authority():
 		growl_timer.wait_time = randf_range(2.0, 10.0)
@@ -45,8 +37,16 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 
-	if !is_hurt:
-		move_to_agent(delta)
+	if is_hurt or is_attacking:
+		return
+
+	move_to_agent(delta)
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	
+	if horizontal_speed > 0.1:
+		animation.play("Walk")
+	else:
+		animation.play("Idle")
 
 func get_closest_player() -> Node3D:
 	var players = get_tree().get_nodes_in_group("Player")
