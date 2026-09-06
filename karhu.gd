@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var navigation = $NavigationAgent3D
-@onready var anim_tree = %AnimationTree
+@onready var anim_tree = %Karhu_Animation
 @onready var enemy_hitbox : Area3D = $Karhu_Area3D
 @onready var growl_sound = $GrowlSound
 @onready var growl_timer = $GrowlTimer
@@ -10,17 +10,13 @@ var state_machine
 const UPDATE_TIME = 0.2
 const SPEED = 150
 const SMOOTHING_FACTOR = 0.1
-@export var attack_damage = 40.0
+var attack_damage = 40.0
 
 var knockback_velocity : Vector3 = Vector3.ZERO
 var enemy_health = 200.0
 var is_hurt = false
 
 @export var player_path : NodePath
-var attack_damage = 40.0
-@onready var enemy_hitbox : Area3D = $Karhu_Area3D
-
-var enemy_health = 200.0
 
 var is_attacking = false
 var targets_in_range = []
@@ -35,7 +31,6 @@ var new_dir
 
 func _ready():
 	target = PlayerManager.player
-	state_machine = anim_tree.get("parameters/playback")
 
 	if is_multiplayer_authority():
 		growl_timer.wait_time = randf_range(2.0, 10.0)
@@ -88,8 +83,8 @@ func move_to_agent(delta: float, speed: float = SPEED):
 	dir.y = 0.0
 	
 	if dir != Vector3.ZERO:
-		var current_facing = -global_transform.basis.z
-		var new_dir = current_facing.slerp(dir, SMOOTHING_FACTOR).normalized()
+		current_facing = -global_transform.basis.z
+		new_dir = current_facing.slerp(dir, SMOOTHING_FACTOR).normalized()
 		look_at(global_position + new_dir, Vector3.UP)
 	
 	velocity = velocity.lerp(dir * speed * delta, SMOOTHING_FACTOR)
@@ -129,7 +124,11 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	match anim_name:
 		"karhu_attack":
-			is_attacking = true		
+			is_attacking = true
+		"Idle":
+			pass
+		"Walk":
+			pass
 
 func _on_growl_timer_timeout() -> void:
 	if not is_multiplayer_authority():

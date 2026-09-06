@@ -16,30 +16,6 @@ material = SubResource("StandardMaterial3D_5vujy")
 
 [sub_resource type="Animation" id="Animation_m0htw"]
 length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.8325957, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_2n50j"]
 resource_name = "axe_swing"
@@ -80,7 +56,7 @@ _data = {
 size = Vector3(0.19920349, 0.3688736, 0.18745117)
 
 [node name="Axe" type="Area3D" unique_id=16307633]
-transform = Transform3D(0.99999976, 0, 0, 0, -0.258819, -0.96592593, 0, 0.96592575, -0.25881907, 0, 0, 0)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000001, 0, 0, 0)
 script = ExtResource("1_2n50j")
 
 [node name="Handle" type="MeshInstance3D" parent="." unique_id=1907971039]
@@ -100,6 +76,8 @@ unique_name_in_owner = true
 transform = Transform3D(-1.0938388e-07, -1.6763809e-09, -1.1000006, -3.5721276e-10, 1.1000001, -1.3224786e-08, 2.2547467, 5.0749815e-10, -4.4803794e-08, 0.005031485, 1.8889002, 0.18252821)
 shape = SubResource("BoxShape3D_m0htw")
 
+[connection signal="area_shape_exited" from="." to="." method="_on_area_shape_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="animation_finished" from="axe_swing" to="." method="_on_axe_swing_animation_finished"]
 [connection signal="animation_started" from="axe_swing" to="." method="_on_axe_swing_animation_started"]

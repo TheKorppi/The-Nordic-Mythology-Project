@@ -9,7 +9,7 @@ var is_swinging_weapon = false
 var attack_timer := 0.0
 const WEAPON_SWING_TIME = 0.4
 
-@onready var axe_hitbox = %WeaponHitbox
+@onready var axe_hitbox = %Axe_Hitbox
 @onready var axe_animation = %AxeAnimation
 
 
