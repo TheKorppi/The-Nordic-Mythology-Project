@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var navigation = $NavigationAgent3D
-@onready var anim_tree = %Karhu_Animation
+@onready var animation = %Karhu_Animation
 @onready var enemy_hitbox : Area3D = $Karhu_Area3D
 @onready var growl_sound = $GrowlSound
 @onready var growl_timer = $GrowlTimer
@@ -46,9 +46,9 @@ func _physics_process(delta: float) -> void:
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 	
 	if horizontal_speed > 0.1:
-		anim_tree.play("Walk")
+		animation.play("Walk")
 	else:
-		anim_tree.play("Idle")
+		animation.play("Idle")
 
 func get_closest_player() -> Node3D:
 	var players = get_tree().get_nodes_in_group("Player")
