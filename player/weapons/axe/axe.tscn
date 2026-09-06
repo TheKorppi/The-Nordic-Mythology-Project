@@ -76,6 +76,8 @@ unique_name_in_owner = true
 transform = Transform3D(-1.0938388e-07, -1.6763809e-09, -1.1000006, -3.5721276e-10, 1.1000001, -1.3224786e-08, 2.2547467, 5.0749815e-10, -4.4803794e-08, 0.005031485, 1.8889002, 0.18252821)
 shape = SubResource("BoxShape3D_m0htw")
 
+[node name="Area3D" type="Area3D" parent="." unique_id=1896023875]
+
 [connection signal="area_shape_exited" from="." to="." method="_on_area_shape_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var navigation = $NavigationAgent3D
 @onready var animation = %Karhu_Animation
-@onready var enemy_hitbox : Area3D = $Karhu_Area3D
+@onready var enemy_hitbox : CollisionShape3D = $Karhu_Hitbox
 @onready var growl_sound = $GrowlSound
 @onready var growl_timer = $GrowlTimer
 
@@ -115,20 +115,21 @@ func _on_karhu_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player") and not targets_in_range.has(body):
 		targets_in_range.append(body)
 		animation.play("Attack")
+		damage_players()
 
 func _on_karhu_hitbox_body_exited(body: Node3D) -> void:
 	if targets_in_range.has(body):
 		targets_in_range.erase(body)
-
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+		
+func _on_karhu_animation_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"Attack":
-			damage_players()
 			is_attacking = false
+			targets_in_range = []
 		"karhu_death":
 			queue_free()
-
-func _on_animation_tree_animation_started(anim_name: StringName) -> void:
+			
+func _on_karhu_animation_animation_started(anim_name: StringName) -> void:
 	match anim_name:
 		"Attack":
 			is_attacking = true

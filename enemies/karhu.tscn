@@ -4989,8 +4989,8 @@ states/Walk/position = Vector2(572, 101)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfuoy"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_qkyku"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_aasrh")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3ndm"]
-radius = 1.4990234
-height = 2.9980469
+radius = 2.2
+height = 4.4
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w3ndm"]
 properties/0/path = NodePath(".:position")
@@ -5006,7 +5006,7 @@ properties/2/replication_mode = 2
 [node name="Karhu" type="CharacterBody3D" unique_id=1135366186 groups=["enemies"]]
 script = ExtResource("1_n25bt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790302459 groups=["enemies"]]
+[node name="Karhu_Hitbox" type="CollisionShape3D" parent="." unique_id=1790302459 groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 1.2390959, -0.34993654)
 shape = SubResource("CapsuleShape3D_ffdxe")
 
@@ -5031,10 +5031,11 @@ tree_root = SubResource("AnimationNodeStateMachine_7rpi6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Garhu/AnimationPlayer")
 
-[node name="Karhu_Area3D" type="Area3D" parent="." unique_id=785632266]
+[node name="Karhu_Attack_Area" type="Area3D" parent="." unique_id=785632266]
+unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Karhu_Area3D" unique_id=682930795]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2376099, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Karhu_Attack_Area" unique_id=682930795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13761, -2.4)
 shape = SubResource("CapsuleShape3D_w3ndm")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1813190106]
@@ -5050,8 +5051,10 @@ max_distance = 20.0
 one_shot = true
 autostart = true
 
+[connection signal="animation_finished" from="Garhu/Karhu_Animation" to="." method="_on_karhu_animation_animation_finished"]
+[connection signal="animation_started" from="Garhu/Karhu_Animation" to="." method="_on_karhu_animation_animation_started"]
 [connection signal="animation_finished" from="Karhu_AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="Karhu_AnimationTree" to="." method="_on_animation_tree_animation_started"]
-[connection signal="body_entered" from="Karhu_Area3D" to="." method="_on_karhu_hitbox_body_entered"]
-[connection signal="body_exited" from="Karhu_Area3D" to="." method="_on_karhu_hitbox_body_exited"]
+[connection signal="body_entered" from="Karhu_Attack_Area" to="." method="_on_karhu_hitbox_body_entered"]
+[connection signal="body_exited" from="Karhu_Attack_Area" to="." method="_on_karhu_hitbox_body_exited"]
 [connection signal="timeout" from="GrowlTimer" to="." method="_on_growl_timer_timeout"]
