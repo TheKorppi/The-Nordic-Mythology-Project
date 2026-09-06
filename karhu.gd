@@ -24,7 +24,9 @@ var target
 var update_timer := 0.0
 
 var next_pos
+var current_facing
 var dir
+var new_dir
 
 func _ready():
 	target = PlayerManager.player
@@ -44,9 +46,9 @@ func _physics_process(delta: float) -> void:
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 	
 	if horizontal_speed > 0.1:
-		animation.play("Walk")
+		anim_tree.play("Walk")
 	else:
-		animation.play("Idle")
+		anim_tree.play("Idle")
 
 func get_closest_player() -> Node3D:
 	var players = get_tree().get_nodes_in_group("Player")

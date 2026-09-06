@@ -63,10 +63,10 @@ target_position = Vector3(0, 0, -10)
 [node name="Garhu" parent="." unique_id=1899180255 groups=["enemies"] instance=ExtResource("2_w3ndm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="metarig" parent="Garhu" index="0" unique_id=160029053]
+[node name="metarig" parent="Garhu" index="0" unique_id=1114888970]
 visible = false
 
-[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 1103878490) index="0" unique_id=1675494105]
+[node name="Skeleton3D" parent="Garhu/rig" parent_id_path=PackedInt32Array(1899180255, 1976379565) index="0" unique_id=850312159]
 bones/1/position = Vector3(0, -0.42803228, 0.18726408)
 bones/2/rotation = Quaternion(0.9960571, 0.004880417, 0.040033728, -0.07901788)
 bones/5/position = Vector3(0, 0.34242576, -0.0107007995)
