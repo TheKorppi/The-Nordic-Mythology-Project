@@ -59,7 +59,7 @@ script = ExtResource("11_mfdv2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=130628201]
 stream = ExtResource("12_iotsf")
-volume_db = -14.157
+volume_db = -20.452
 autoplay = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1616147051]

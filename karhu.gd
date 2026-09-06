@@ -6,7 +6,6 @@ extends CharacterBody3D
 @onready var growl_sound = $GrowlSound
 @onready var growl_timer = $GrowlTimer
 
-var state_machine
 const UPDATE_TIME = 0.2
 const SPEED = 150
 const SMOOTHING_FACTOR = 0.1
@@ -26,8 +25,6 @@ var update_timer := 0.0
 
 var next_pos
 var dir
-var current_facing
-var new_dir
 
 func _ready():
 	target = PlayerManager.player
@@ -40,8 +37,16 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 
-	if !is_hurt:
-		move_to_agent(delta)
+	if is_hurt or is_attacking:
+		return
+
+	move_to_agent(delta)
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	
+	if horizontal_speed > 0.1:
+		animation.play("Walk")
+	else:
+		animation.play("Idle")
 
 func get_closest_player() -> Node3D:
 	var players = get_tree().get_nodes_in_group("Player")

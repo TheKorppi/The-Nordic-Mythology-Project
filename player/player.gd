@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var speed = 9.0
+@export var sync_velocity : Vector3 = Vector3.ZERO
 var sprint_scalar = 2.0
 var rotation_speed = 15.0
 var health = 100.0
@@ -41,16 +42,19 @@ func _input(event):
 		pass
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
-	
-	player_movement(delta)
-	move_and_slide()
-	
-	attack_timer -= delta
-	if Input.is_action_pressed("primary_fire") && attack_timer <= 0.0:
-		#throw_bomb() toteutaan eri nappiin, tai slottiin? mahdollisesti kirveen heitto
-		axe_animation.play("axe_swing")
-		attack_timer = WEAPON_SWING_TIME
+	if is_multiplayer_authority():
+		player_movement(delta)
+		move_and_slide()
+		
+		sync_velocity = velocity 
+		
+		attack_timer -= delta
+		if Input.is_action_pressed("primary_fire") && attack_timer <= 0.0:
+			axe_animation.play("axe_swing")
+			attack_timer = WEAPON_SWING_TIME
+
+	else:
+		velocity = sync_velocity
 		
 func player_movement(delta):
 	# Pelaajan liikkuminen
